@@ -1,4 +1,8 @@
 import React, { useState, useEffect } from "react";
+import GeoAPI from "../utils/GeoApi";
+import Map from "./Map";
+import Weather from "./Weather";
+
 
 function WrapperForSearch() {
     // Setting states for search form input, search term for API call, and location info
@@ -11,7 +15,10 @@ function WrapperForSearch() {
         key: ""
     });
 
-    //Form functions
+    // API Call for location
+    
+
+    // Form functions
     const handleInputChange = event => {setInput(event.target.value)}
 
     const handleSubmit = event => {
