@@ -9,7 +9,6 @@ function App() {
     <Router>
       <div>
         <Nav />
-        <Map />
         <Footer />
       </div>
     </Router>
