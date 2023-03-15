@@ -11,6 +11,15 @@ function WrapperForSearch() {
         key: ""
     });
 
+    //Form functions
+    const handleInputChange = event => {setInput(event.target.value)}
+
+    const handleFormSubmit = event => {
+        event.preventDefault();
+        setSearch(input);
+        setInput("");
+    };
+
     return (
         <div>
             <SearchForm />
