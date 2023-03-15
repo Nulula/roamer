@@ -20,6 +20,7 @@ function WrapperForSearch() {
         key: ""
     });
 
+    // Function runs every time the search state changes
     useEffect(() => {
         if (!search.city && !search.country) {
             return;
@@ -38,9 +39,7 @@ function WrapperForSearch() {
     }, [search]);
 
 
-
-    // Form functions
-
+    // Search form functions
     const handleCityChange = (event) => {
         setCityValue(event.target.value);
     };
@@ -68,10 +67,14 @@ function WrapperForSearch() {
             handleCountryChange={handleCountryChange}
             handleSubmit={handleSubmit}/>
 
-            {/* <Map cityName={location.cityName}
-            lat={location.lat}
-            lon={location.lon}
-            key={location.key} /> */}
+            {/* <Map 
+            lat={coordinates.lat}
+            lon={coordinates.lon}
+            key={coordinates.key} /> */}
+
+            {/* <Weather lat={coordinates.lat}
+            lon={coordinates.lon}
+            key={coordinates.key} /> */}
         </div>
     )
 };
