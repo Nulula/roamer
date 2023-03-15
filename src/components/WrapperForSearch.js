@@ -4,11 +4,20 @@ function WrapperForSearch() {
     // Setting states for search form input, search term for API call, and location info
     const [input, setInput] = useState();
     const [search, setSearch] = useState();
-    const [location, setLocation] = useState();
+    const [location, setLocation] = useState({
+        cityName: "",
+        lat: 0,
+        lon: 0,
+        key: ""
+    });
 
     return (
         <div>
-
+            <SearchForm />
+            <Map cityName={location.cityName}
+            lat={location.lat}
+            lon={location.lon}
+            key={location.key} />
         </div>
     )
 };
