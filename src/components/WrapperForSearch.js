@@ -7,11 +7,7 @@ import SearchForm from "./SearchForm";
 
 
 function WrapperForSearch() {
-    // Setting states for search form input, search term for API call, and location info
-    const [formInputs, setFormInputs] = useState({
-        city: "",
-        country: ""
-    });
+    // Setting states
     const [search, setSearch] = useState({
         city: "",
         country: ""
@@ -25,11 +21,10 @@ function WrapperForSearch() {
     });
 
     useEffect(() => {
-        console.log(coordinates);
-    }, []);
-
-    // API Call for location
-    const searchCoordinates = () => {
+        if (!search.city && !search.country) {
+            return;
+        }
+        // API Call for location
         axios.get("https://api.geoapify.com/v1/geocode/search?city=" + search.city + "&country=" + search.country + "&limit=1&format=json&apiKey=8f4690110c99450d8e8c77713b77c534")
         .then((res) => {
             console.log(res);
@@ -39,11 +34,12 @@ function WrapperForSearch() {
                 key: res.data.results[0].place_id,
             });
         })
-        .catch(err => console.log(err));
-    }
+        .catch(error => console.log(error));
+    }, [search]);
+
+
 
     // Form functions
-    // const handleInputChange = event => {setInput(event.target.value)}
 
     const handleCityChange = (event) => {
         setCityValue(event.target.value);
@@ -55,13 +51,9 @@ function WrapperForSearch() {
 
     const handleSubmit = event => {
         event.preventDefault();
-        setFormInputs({
+        setSearch({
             city: cityValue,
             country: countryValue
-        });
-        setSearch({
-            city: formInputs.city,
-            country: formInputs.country
         });
         setCityValue("");
         setCountryValue("");
@@ -70,7 +62,6 @@ function WrapperForSearch() {
 
     return (
         <div>
-            <button onClick={searchCoordinates}>Click for API call</button>
             <SearchForm cityValue={cityValue}
             countryValue={countryValue}
             handleCityChange={handleCityChange}
