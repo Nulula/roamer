@@ -14,7 +14,7 @@ function WrapperForSearch() {
     //Form functions
     const handleInputChange = event => {setInput(event.target.value)}
 
-    const handleFormSubmit = event => {
+    const handleSubmit = event => {
         event.preventDefault();
         setSearch(input);
         setInput("");
@@ -22,7 +22,10 @@ function WrapperForSearch() {
 
     return (
         <div>
-            <SearchForm />
+            <SearchForm input={input}
+            handleSubmit={handleSubmit}
+            handleInputChange={handleInputChange}/>
+
             <Map cityName={location.cityName}
             lat={location.lat}
             lon={location.lon}
