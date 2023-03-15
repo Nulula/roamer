@@ -1,18 +1,30 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
+import logo from "../assets/Roumer_Logo.png";
 
 const styles = {
   navBar: {
     position: "relative",
   },
+  navList: {
+    marginRight: "0",
+    marginLeft: "auto",
+  },
 };
 
 function Nav() {
   return (
-    <nav className="navbar navbar-expand-lg navbar-light bg-light ml-80">
-      <div style={styles.navBar}>
-        <ul className="navbar-nav ">
-          <li className="nav-item">
+    <nav className="navbar navbar-expand-lg navbar-light bg-secondary">
+      <div style={styles.navBar} className="container-fluid">
+        <div>
+          <img
+            src={logo}
+            alt="Logo"
+            style={{ marginRight: "2px", width: "75px" }}
+          />
+        </div>
+        <ul className="navbar-nav " style={styles.navList}>
+          <li className="nav-item" style={{ marginRight: "10px" }}>
             <NavLink
               to="/nearme"
               end
@@ -24,7 +36,7 @@ function Nav() {
             </NavLink>
           </li>
 
-          <li className="nav-item">
+          <li className="nav-item" style={{ marginRight: "10px" }}>
             <NavLink
               to="/contact"
               end
@@ -35,7 +47,7 @@ function Nav() {
               Contact us
             </NavLink>
           </li>
-          <li className="nav-item">
+          <li className="nav-item" style={{ marginRight: "10px" }}>
             <NavLink
               to="/profile"
               className={({ isActive }) =>
@@ -45,7 +57,7 @@ function Nav() {
               Profile
             </NavLink>
           </li>
-          <li className="nav-item">
+          <li className="nav-item" style={{ marginRight: "10px" }}>
             <NavLink
               to="/login"
               className={({ isActive }) =>
