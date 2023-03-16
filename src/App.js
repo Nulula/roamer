@@ -10,10 +10,11 @@ function App() {
     <Router>
       <div>
         <Nav />
+
+        <WrapperForSearch />
         <Routes>
           <Route path="/contact" element={<Contact />}></Route>
         </Routes>
-        <WrapperForSearch />
         <Footer />
       </div>
     </Router>
