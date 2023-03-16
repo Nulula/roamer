@@ -4,7 +4,6 @@ import Nav from "./components/Nav";
 import Footer from "./components/Footer";
 import Contact from "./pages/Contact";
 import WrapperForSearch from "./components/WrapperForSearch";
-import Weather from "./components/Weather";
 
 function App() {
   return (
@@ -12,7 +11,6 @@ function App() {
       <div>
         <Nav />
         <WrapperForSearch />
-        <Weather />
         <Routes>
           <Route path="/contact" element={<Contact />}></Route>
         </Routes>

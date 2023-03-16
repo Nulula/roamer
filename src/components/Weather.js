@@ -3,8 +3,9 @@ import WeatherApi from "../utils/WeatherApi";
 import { useState, useEffect } from "react";
 
 function Weather(props) {
-  const lat = props.lat;
-  const lon = props.lon;
+  let lon = props.lon;
+  let lat = props.lat;
+  console.log(lat, lon);
   const [weather, setWeather] = useState({
     cityName: "",
     temperatutre: 0,
@@ -28,14 +29,12 @@ function Weather(props) {
   });
 
   useEffect(() => {
-    if (lat === undefined && lon === undefined) {
-      return;
-    } else if (lat === 0 && lon === 0) {
-      return;
+    if (!lat || !lon) {
+      lat = 51.509865;
+      lon = -0.118092;
     }
     WeatherApi.searchWeather(lat, lon)
       .then((res) => {
-        // console.log(res);
         setWeather({
           cityName: res.data.name,
           temperatutre: res.data.main.temp,
@@ -48,14 +47,6 @@ function Weather(props) {
         });
       })
       .catch((err) => console.log("err"));
-  }, [lat, lon]);
-
-  useEffect(() => {
-    if (lat === undefined && lon === undefined) {
-      return;
-    } else if (lat === 0 && lon === 0) {
-      return;
-    }
     WeatherApi.serchFutureWeather(lat, lon)
       .then((res) => {
         console.log(res);
@@ -75,38 +66,35 @@ function Weather(props) {
 
   return (
     <>
-      {lat && lon && (
-        <div className="cardContainer">
-          <div className="card" style={{ width: "16rem" }}>
-            <div className="card-body">
-              <h1>Weather in {weather.cityName}</h1>
-              <img src={weather.urlIcon} alt={weather.clouds}></img>
-              <p>
-                {weather.clouds.charAt(0).toUpperCase() +
-                  weather.clouds.slice(1)}
-              </p>
-              <p>Temperature {weather.temperatutre} C°</p>
-              <p>Feels Like {weather.feelsLike} C°</p>
-              <p>Wind Speed {weather.wind} m/s</p>
-              <p>Humidity {weather.humidity} %</p>
-            </div>
-          </div>
-          <div className="card" style={{ width: "16rem" }}>
-            <div className="card-body">
-              <h1>Weather in {futureWeather.cityName} in 3 hours</h1>
-              <img src={futureWeather.urlIcon} alt={futureWeather.clouds}></img>
-              <p>
-                {futureWeather.clouds.charAt(0).toUpperCase() +
-                  futureWeather.clouds.slice(1)}
-              </p>
-              <p>Temperature {futureWeather.temperatutre} C°</p>
-              <p>Feels Like {futureWeather.feelsLike} C°</p>
-              <p>Wind Speed {futureWeather.wind} m/s</p>
-              <p>Humidity {futureWeather.humidity} %</p>
-            </div>
+      <div className="cardContainer">
+        <div className="card" style={{ width: "16rem" }}>
+          <div className="card-body">
+            <h3>Weather in {weather.cityName}</h3>
+            <img src={weather.urlIcon} alt={weather.clouds}></img>
+            <p>
+              {weather.clouds.charAt(0).toUpperCase() + weather.clouds.slice(1)}
+            </p>
+            <p>Temperature {weather.temperatutre} C°</p>
+            <p>Feels Like {weather.feelsLike} C°</p>
+            <p>Wind Speed {weather.wind} m/s</p>
+            <p>Humidity {weather.humidity} %</p>
           </div>
         </div>
-      )}
+        <div className="card" style={{ width: "16rem" }}>
+          <div className="card-body">
+            <h3>Weather in {futureWeather.cityName} in 3 hours</h3>
+            <img src={futureWeather.urlIcon} alt={futureWeather.clouds}></img>
+            <p>
+              {futureWeather.clouds.charAt(0).toUpperCase() +
+                futureWeather.clouds.slice(1)}
+            </p>
+            <p>Temperature {futureWeather.temperatutre} C°</p>
+            <p>Feels Like {futureWeather.feelsLike} C°</p>
+            <p>Wind Speed {futureWeather.wind} m/s</p>
+            <p>Humidity {futureWeather.humidity} %</p>
+          </div>
+        </div>
+      </div>
     </>
   );
 }
