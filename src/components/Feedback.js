@@ -16,22 +16,47 @@ function Feedback() {
       )
       .then(
         (result) => {
+          console.log(result.text);
           console.log("Email has been sent");
+          form.current.reset();
         },
         (error) => {
+          console.log(error.text);
           console.log("Error");
         }
       );
   };
   return (
-    <form ref={form} onSubmit={sendEmail}>
-      <label>Name</label>
-      <input type="text" name="user_name" />
-      <label>Email</label>
-      <input type="email" name="user_email" />
-      <label>Message</label>
-      <textarea name="message" />
-      <input type="submit" value="Send" />
+    <form className="signup-form " ref={form} onSubmit={sendEmail}>
+      <div className="form-group">
+        <label>Your Name</label>
+        <input
+          className="form-control"
+          type="text"
+          placeholder="Name"
+          name="user_name"
+        />
+      </div>
+      <div className="form-group">
+        <label>Email Address</label>
+        <input
+          className="form-control"
+          type="email"
+          placeholder="example@example.com"
+          name="user_email"
+        />
+      </div>
+      <div className="form-group">
+        <label>Feedback</label>
+        <textarea
+          className="form-control"
+          name="message"
+          placeholder="Your message..."
+        />
+      </div>
+      <button className="btn btn-primary" value="submit" type="submit">
+        Send
+      </button>
     </form>
   );
 }
