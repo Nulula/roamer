@@ -5,6 +5,7 @@ import { useState, useEffect } from "react";
 function Weather(props) {
   const lat = props.lat;
   const lon = props.lon;
+  console.log(lat, lon);
   const [weather, setWeather] = useState({
     cityName: "",
     temperatutre: 0,
@@ -28,9 +29,12 @@ function Weather(props) {
   });
 
   useEffect(() => {
-    console.log(lat);
-    console.log(lon);
-    WeatherApi.searchWeather(51.5072, -0.118092)
+    if (lat === undefined && lon === undefined) {
+      return;
+    } else if (lat === 0 && lon === 0) {
+      return;
+    }
+    WeatherApi.searchWeather(lat, lon)
       .then((res) => {
         // console.log(res);
         setWeather({
@@ -45,10 +49,15 @@ function Weather(props) {
         });
       })
       .catch((err) => console.log("err"));
-  }, []);
+  }, [lat, lon]);
 
   useEffect(() => {
-    WeatherApi.serchFutureWeather(51.5072, -0.118092)
+    if (lat === undefined && lon === undefined) {
+      return;
+    } else if (lat === 0 && lon === 0) {
+      return;
+    }
+    WeatherApi.serchFutureWeather(lat, lon)
       .then((res) => {
         console.log(res);
         setFutureWeather({
@@ -63,38 +72,43 @@ function Weather(props) {
         });
       })
       .catch((err) => console.log("err"));
-  }, []);
+  }, [lat, lon]);
 
   return (
-    <div className="cardContainer">
-      <div className="card" style={{ width: "16rem" }}>
-        <div className="card-body">
-          <h1>Weather in {weather.cityName}</h1>
-          <img src={weather.urlIcon} alt={weather.clouds}></img>
-          <p>
-            {weather.clouds.charAt(0).toUpperCase() + weather.clouds.slice(1)}
-          </p>
-          <p>Temperature {weather.temperatutre} C°</p>
-          <p>Feels Like {weather.feelsLike} C°</p>
-          <p>Wind Speed {weather.wind} m/s</p>
-          <p>Humidity {weather.humidity} %</p>
+    <>
+      {lat && lon && (
+        <div className="cardContainer">
+          <div className="card" style={{ width: "16rem" }}>
+            <div className="card-body">
+              <h1>Weather in {weather.cityName}</h1>
+              <img src={weather.urlIcon} alt={weather.clouds}></img>
+              <p>
+                {weather.clouds.charAt(0).toUpperCase() +
+                  weather.clouds.slice(1)}
+              </p>
+              <p>Temperature {weather.temperatutre} C°</p>
+              <p>Feels Like {weather.feelsLike} C°</p>
+              <p>Wind Speed {weather.wind} m/s</p>
+              <p>Humidity {weather.humidity} %</p>
+            </div>
+          </div>
+          <div className="card" style={{ width: "16rem" }}>
+            <div className="card-body">
+              <h1>Weather in {futureWeather.cityName} in 3 hours</h1>
+              <img src={futureWeather.urlIcon} alt={futureWeather.clouds}></img>
+              <p>
+                {futureWeather.clouds.charAt(0).toUpperCase() +
+                  futureWeather.clouds.slice(1)}
+              </p>
+              <p>Temperature {futureWeather.temperatutre} C°</p>
+              <p>Feels Like {futureWeather.feelsLike} C°</p>
+              <p>Wind Speed {futureWeather.wind} m/s</p>
+              <p>Humidity {futureWeather.humidity} %</p>
+            </div>
+          </div>
         </div>
-      </div>
-      <div className="card" style={{ width: "16rem" }}>
-        <div className="card-body">
-          <h1>Weather in {futureWeather.cityName} in 3 hours</h1>
-          <img src={futureWeather.urlIcon} alt={futureWeather.clouds}></img>
-          <p>
-            {futureWeather.clouds.charAt(0).toUpperCase() +
-              futureWeather.clouds.slice(1)}
-          </p>
-          <p>Temperature {futureWeather.temperatutre} C°</p>
-          <p>Feels Like {futureWeather.feelsLike} C°</p>
-          <p>Wind Speed {futureWeather.wind} m/s</p>
-          <p>Humidity {futureWeather.humidity} %</p>
-        </div>
-      </div>
-    </div>
+      )}
+    </>
   );
 }
 export default Weather;
