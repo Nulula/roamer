@@ -19,7 +19,7 @@ const SearchForm = ({countryValue, cityValue, handleCityChange, handleCountryCha
                     ))}
                 </select>
             </div>
-            <button type="submit" className="btn btn-primary" onClick={handleSubmit}>Submit</button>        
+            <button type="submit" className="btn btn-primary" id="cityCountryButton" onClick={handleSubmit}>Submit</button>        
     </>
     )
 
