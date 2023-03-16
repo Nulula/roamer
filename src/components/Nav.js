@@ -2,6 +2,7 @@ import React from "react";
 import { NavLink } from "react-router-dom";
 import logo from "../assets/Roumer_Logo.png";
 
+// Styles for the Nav component
 const styles = {
   navBar: {
     position: "relative",
@@ -12,6 +13,7 @@ const styles = {
   },
 };
 
+// Navigation component that displays links to different pages
 function Nav() {
   return (
     <nav className="navbar navbar-expand-lg navbar-light bg-secondary">
@@ -24,6 +26,19 @@ function Nav() {
           />
         </div>
         <ul className="navbar-nav " style={styles.navList}>
+          {/* Home page link */}
+          <li className="nav-item" style={{ marginRight: "10px" }}>
+            <NavLink
+              to="/"
+              end
+              className={({ isActive }) =>
+                isActive ? "nav-link active" : "nav-link"
+              }
+            >
+              Home
+            </NavLink>
+          </li>
+          {/* Near me page link */}
           <li className="nav-item" style={{ marginRight: "10px" }}>
             <NavLink
               to="/nearme"
@@ -35,7 +50,7 @@ function Nav() {
               Near me
             </NavLink>
           </li>
-
+          {/* Contact us page link */}
           <li className="nav-item" style={{ marginRight: "10px" }}>
             <NavLink
               to="/contact"
@@ -47,6 +62,7 @@ function Nav() {
               Contact us
             </NavLink>
           </li>
+          {/* Profile page link */}
           <li className="nav-item" style={{ marginRight: "10px" }}>
             <NavLink
               to="/profile"
@@ -57,6 +73,7 @@ function Nav() {
               Profile
             </NavLink>
           </li>
+          {/* Login page link */}
           <li className="nav-item" style={{ marginRight: "10px" }}>
             <NavLink
               to="/login"
