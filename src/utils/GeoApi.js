@@ -33,14 +33,14 @@ const placesCall4 = "&limit=20";
 export default {
     searchMap: function(city, country) {
         return axios.get(BASEURL + mapCall1 + city + mapCall2 + country + mapCall3 + APIKEY)
-    };
+    },
 
     searchRoute: function(start, finish) {
-        return axios.get(BASEURL + routeCall1 + start + routeCall2 + finish + routeCall3)
-    };
+        return axios.get(BASEURL + routeCall1 + start + routeCall2 + finish + routeCall3 + APIKEY)
+    },
 
     searchPlace: function(category, point) {
-        return axios.get(BASEURL + placesCall1 + category + placesCall2 + point + placesCall3 + point + placesCall4)
+        return axios.get(BASEURL + placesCall1 + category + placesCall2 + point + placesCall3 + point + placesCall4 + APIKEY)
     }
 
 }

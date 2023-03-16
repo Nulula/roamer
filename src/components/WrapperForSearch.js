@@ -25,10 +25,12 @@ function WrapperForSearch() {
         if (!search.city && !search.country) {
             return;
         }
+        const cityC = search.city;
+        const countryC = search.country;
         // API Call for location
-        GeoAPI.searchMap(search.city, search.country)
+        GeoAPI.searchMap(cityC, countryC)
         .then((res) => {
-            console.log(res);
+            console.log("Res" + res.data.results[0].lat);
             setCoordinates({
                 lat: res.data.results[0].lat,
                 lon: res.data.results[0].lon,
