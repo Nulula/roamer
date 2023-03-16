@@ -67,10 +67,10 @@ function WrapperForSearch() {
             handleCountryChange={handleCountryChange}
             handleSubmit={handleSubmit}/>
 
-            {/* <Map 
+            <Map 
             lat={coordinates.lat}
             lon={coordinates.lon}
-            key={coordinates.key} /> */}
+            key={coordinates.key} />
 
             {/* <Weather lat={coordinates.lat}
             lon={coordinates.lon}
