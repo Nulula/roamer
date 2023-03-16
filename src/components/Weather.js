@@ -5,7 +5,6 @@ import { useState, useEffect } from "react";
 function Weather(props) {
   const lat = props.lat;
   const lon = props.lon;
-  console.log(lat, lon);
   const [weather, setWeather] = useState({
     cityName: "",
     temperatutre: 0,
