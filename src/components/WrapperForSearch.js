@@ -26,7 +26,7 @@ function WrapperForSearch() {
             return;
         }
         // API Call for location
-        axios.get("https://api.geoapify.com/v1/geocode/search?city=" + search.city + "&country=" + search.country + "&limit=1&format=json&apiKey=8f4690110c99450d8e8c77713b77c534")
+        GeoAPI.searchMap(search.city, search.country)
         .then((res) => {
             console.log(res);
             setCoordinates({
