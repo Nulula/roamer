@@ -8,7 +8,7 @@ export default {
   searchWeather: function (lat, lon) {
     return axios.get(BASEURL + `lat=${lat}&lon=${lon}` + APIKEY);
   },
-  serchFutureWeather: function (lat, lon) {
+  searchFutureWeather: function (lat, lon) {
     return axios.get(BASEURLfuture + `lat=${lat}&lon=${lon}` + APIKEY);
   },
 };

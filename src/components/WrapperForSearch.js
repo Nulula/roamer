@@ -72,14 +72,8 @@ function WrapperForSearch() {
         handleCountryChange={handleCountryChange}
         handleSubmit={handleSubmit}
       />
-
       <Map lat={coordinates.lat} lon={coordinates.lon} key={coordinates.key} />
-
-      <Weather
-        lat={coordinates.lat}
-        lon={coordinates.lon}
-        key={coordinates.key}
-      />
+      <Weather lat={coordinates.lat} lon={coordinates.lon} />
     </div>
   );
 }
