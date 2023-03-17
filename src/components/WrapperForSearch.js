@@ -6,7 +6,6 @@ import Weather from "./Weather";
 import SearchForm from "./SearchForm";
 import SearchCategories from "./SearchCategories";
 
-
 function WrapperForSearch() {
     // Setting states
     const [search, setSearch] = useState({
@@ -97,30 +96,24 @@ function WrapperForSearch() {
         setSearching(true)
     };
 
-    return (
-        <div>
-            <SearchForm cityValue={cityValue}
-            countryValue={countryValue}
-            handleCityChange={handleCityChange}
-            handleCountryChange={handleCountryChange}
-            handleSubmit={handleSubmit}/>
-
-            <SearchCategories 
+  return (
+    <div>
+      <SearchForm
+        cityValue={cityValue}
+        countryValue={countryValue}
+        handleCityChange={handleCityChange}
+        handleCountryChange={handleCountryChange}
+        handleSubmit={handleSubmit}
+      />
+        <SearchCategories 
             categoryValue={categoryValue}
             handleCategoryChange={handleCategoryChange}
             handleCategorySubmit={handleCategorySubmit}
             />
-
-            {/* <Map 
-            lat={coordinates.lat}
-            lon={coordinates.lon}
-            key={coordinates.key} /> */}
-
-            {/* <Weather lat={coordinates.lat}
-            lon={coordinates.lon}
-            key={coordinates.key} /> */}
-        </div>
-    )
-};
+      <Map lat={coordinates.lat} lon={coordinates.lon} key={coordinates.key} />
+      <Weather lat={coordinates.lat} lon={coordinates.lon} />
+    </div>
+  );
+}
 
 export default WrapperForSearch;
