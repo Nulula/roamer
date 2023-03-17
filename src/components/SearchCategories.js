@@ -9,13 +9,13 @@ const SearchCategories = ({categoryValue, handleCategoryChange, handleCategorySu
                 <label htmlFor="dropdown-category-field">Category:</label>
                 <select id="dropdown-category-field" value={categoryValue} onChange={handleCategoryChange}>
                     {placesCategories.map((category) => (
-                        <option key={category.key} value={category.value}>
+                        <option key={category.value} value={category.key}>
                             {category.value}
                         </option>
                     ))}
                 </select>
             </div>
-            <button type="submit" className="btn btn-primary" id="cityCategoryButton" onClick={handleSubmit}>Find</button>        
+            <button type="submit" className="btn btn-primary" id="cityCategoryButton" onClick={handleCategorySubmit}>Find</button>        
     </>
     )
 

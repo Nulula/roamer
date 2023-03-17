@@ -4,6 +4,7 @@ import GeoAPI from "../utils/GeoApi";
 import Map from "./Map";
 import Weather from "./Weather";
 import SearchForm from "./SearchForm";
+import SearchCategories from "./SearchCategories";
 
 
 function WrapperForSearch() {
@@ -19,6 +20,10 @@ function WrapperForSearch() {
         lon: 0,
         key: ""
     });
+    const [categoryValue,setCategoryValue] = useState("");
+    const [categorySearchValue,setCategorySearchValue] = useState("");
+    const [startP,setStartP] = useState("");
+    const [searching, setSearching] = useState(false);
 
     // Function runs every time the search state changes
     useEffect(() => {
@@ -27,6 +32,7 @@ function WrapperForSearch() {
         }
         const cityC = search.city;
         const countryC = search.country;
+
         // API Call for location
         GeoAPI.searchMap(cityC, countryC)
         .then((res) => {
@@ -36,10 +42,30 @@ function WrapperForSearch() {
                 lon: res.data.results[0].lon,
                 key: res.data.results[0].place_id,
             });
+
         })
         .catch(error => console.log(error));
     }, [search]);
 
+    useEffect(() => {
+        if (!coordinates.lat || !coordinates.lon) {
+          return;
+        }
+      
+        const newStartP = `${coordinates.lat},${coordinates.lon}`;
+        setStartP(newStartP);
+      }, [coordinates]);
+        //API call for categories
+        useEffect(() => {
+            if (!searching || !coordinates.key) {
+                return;
+            }
+            GeoAPI.searchPlace(categorySearchValue, startP)
+            .then((res) => {
+                console.log(res);
+            })
+            .catch(error => console.log(error));
+        }, [searching,startP]);
 
     // Search form functions
     const handleCityChange = (event) => {
@@ -56,10 +82,20 @@ function WrapperForSearch() {
             city: cityValue,
             country: countryValue
         });
-        setCityValue("");
-        setCountryValue("");
+        setSearching(false)
     };
 
+    //search form for map categories functions
+    const handleCategoryChange = (event) => {
+        setCategoryValue(event.target.value);
+    };
+
+    const handleCategorySubmit = event => {
+        event.preventDefault();
+        setCategorySearchValue(categoryValue);
+        setCategoryValue("");
+        setSearching(true)
+    };
 
     return (
         <div>
@@ -68,6 +104,12 @@ function WrapperForSearch() {
             handleCityChange={handleCityChange}
             handleCountryChange={handleCountryChange}
             handleSubmit={handleSubmit}/>
+
+            <SearchCategories 
+            categoryValue={categoryValue}
+            handleCategoryChange={handleCategoryChange}
+            handleCategorySubmit={handleCategorySubmit}
+            />
 
             {/* <Map 
             lat={coordinates.lat}
