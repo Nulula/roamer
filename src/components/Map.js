@@ -9,7 +9,7 @@ function Map({lat, lon, categoryResponse}) {
         <div>
             <MapContainer 
             center={lat && lon != 0 ? [lat, lon] : [51.509865, -0.118092]} 
-            zoom={12}
+            zoom={13}
             scrollWheelZoom={false}>
                 <TileLayer
                 url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
