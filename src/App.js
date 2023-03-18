@@ -17,7 +17,7 @@ function App() {
       <div>
         <Nav /> {/* Rendering the Navigation component*/}
         <Routes>
-          <Route path="/" element={<HomePage />}>
+          <Route path="/" element={<WrapperForSearch />}>
             {" "}
           </Route>{" "}
           {/*Defining */}
@@ -30,7 +30,7 @@ function App() {
           <Route path="/nearme" element={<WrapperForSearch />}></Route>{" "}
           {/*
           Defining the route for the WrapperForSearch component*/}
-          <Route path="/home" element={<HomePage />}></Route>{" "}
+          <Route path="/home" element={<WrapperForSearch />}></Route>{" "}
           {/* Defining the
           route for the Login page component*/}
         </Routes>

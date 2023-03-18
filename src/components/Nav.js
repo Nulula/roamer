@@ -19,7 +19,7 @@ function Nav() {
     <nav className="navbar navbar-expand-lg navbar-light bg-secondary">
       <div style={styles.navBar} className="container-fluid">
         <div>
-          <NavLink to="/home">
+          <NavLink to="/">
             <img
               src={logo}
               alt="Logo"
@@ -31,7 +31,7 @@ function Nav() {
           {/* Login page link */}
           <li className="nav-item" style={{ marginRight: "10px" }}>
             <NavLink
-              to="/home"
+              to="/"
               end
               className={({ isActive }) =>
                 isActive ? "nav-link active" : "nav-link"
