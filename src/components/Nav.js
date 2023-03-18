@@ -17,7 +17,7 @@ const styles = {
 // Navigation component that displays links to different pages
 function Nav() {
   const [currentTime, setCurrentTime] = useState(
-    moment().format("dd mm  YYYY, h:mm a")
+    moment().format("MMMM Do YYYY, h:mm a")
   );
 
   useEffect(() => {
