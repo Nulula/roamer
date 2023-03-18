@@ -19,14 +19,16 @@ function Nav() {
     <nav className="navbar navbar-expand-lg navbar-light bg-secondary">
       <div style={styles.navBar} className="container-fluid">
         <div>
-          <img
-            src={logo}
-            alt="Logo"
-            style={{ marginRight: "2px", width: "75px" }}
-          />
+          <NavLink to="/">
+            <img
+              src={logo}
+              alt="Logo"
+              style={{ marginRight: "2px", width: "75px" }}
+            />
+          </NavLink>
         </div>
         <ul className="navbar-nav " style={styles.navList}>
-          {/* Home page link */}
+          {/* Login page link */}
           <li className="nav-item" style={{ marginRight: "10px" }}>
             <NavLink
               to="/"
@@ -38,6 +40,7 @@ function Nav() {
               Home
             </NavLink>
           </li>
+
           {/* Near me page link */}
           <li className="nav-item" style={{ marginRight: "10px" }}>
             <NavLink
@@ -74,16 +77,6 @@ function Nav() {
             </NavLink>
           </li>
           {/* Login page link */}
-          <li className="nav-item" style={{ marginRight: "10px" }}>
-            <NavLink
-              to="/login"
-              className={({ isActive }) =>
-                isActive ? "nav-link active" : "nav-link"
-              }
-            >
-              Login
-            </NavLink>
-          </li>
         </ul>
       </div>
     </nav>
