@@ -20,7 +20,7 @@ function Geolocation() {
 
     return (
         <>
-            <button type="submit" className="btn btn-primary" onClick={handleClick}>Near Me</button>
+            <button type="submit" className="btn btn-primary" id="nearMeButton" onClick={handleClick}>Near Me</button>
         </>
     )
 };
