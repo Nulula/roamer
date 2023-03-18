@@ -112,7 +112,7 @@ function WrapperForSearch() {
             handleCategoryChange={handleCategoryChange}
             handleCategorySubmit={handleCategorySubmit}
             />
-      <Map lat={coordinates.lat} lon={coordinates.lon} key={coordinates.key} />
+      <Map lat={coordinates.lat} lon={coordinates.lon} key={coordinates.key} categoryResponse={categoryResponse}/>
       <Weather lat={coordinates.lat} lon={coordinates.lon} />
     </div>
   );

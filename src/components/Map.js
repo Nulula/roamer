@@ -1,7 +1,8 @@
 import React from "react";
 import { MapContainer, TileLayer } from 'react-leaflet';
+import MapCategoryMarkers from "./MapCategoryMarkers";
 
-function Map({lat, lon}) {
+function Map({lat, lon, categoryResponse}) {
 
     
     return (
@@ -14,6 +15,7 @@ function Map({lat, lon}) {
                 url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
                 attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
                 />
+                <MapCategoryMarkers categoryResponse={categoryResponse} />
             </MapContainer>
         </div>
     )

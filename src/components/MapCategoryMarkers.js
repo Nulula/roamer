@@ -3,10 +3,6 @@ import { Marker, Popup } from "react-leaflet";
 
 function MapCategoryMarkers({categoryResponse}) {
 
-    const urlify = (string) => {
-        return string.replaceAll(/ /g, "+").replaceAll(/&/g, "");
-    }
-
     return !categoryResponse ? null : (
         <>
         {categoryResponse.map((place, index) => (
