@@ -32,6 +32,10 @@ function LoginModal() {
   function handleSubmit(event) {
     event.preventDefault();
     // Save the form data to local storage
+    if (!formData.name || !formData.password || !formData.repeatPassword) {
+      toast.error("Please fill in all fields");
+      return;
+    }
     if (formData.password !== formData.repeatPassword) {
       toast.error("Oops! Passwords mismatch!");
       return;
@@ -62,6 +66,10 @@ function LoginModal() {
       signedIn: false,
     }));
     setShowModal(false);
+  }
+
+  function handleRegister() {
+    setShowModal(true);
   }
 
   return (
@@ -114,16 +122,19 @@ function LoginModal() {
         <h5 style={styles}>
           <div className="container mt-5">
             {userData.signedIn ? (
-              `Welcome to your profile page, ${userData.name}! On this page, you can find all the places that you've saved during your trips.`
+              window.location.replace("/profile") // Redirect to the profile page
             ) : (
-              <span>
-                Welcome! To access your profile page, please register and login.
-                Registering is quick and easy, and it allows you to take
-                advantage of all the features our website has to offer. Once
-                you're logged in, you'll be able to view your profile page and
-                update your information at any time. Thank you for choosing our
-                website!
-              </span>
+              <>
+                <span>
+                  Welcome! To access your profile page, please register and
+                  login. Registering is quick and easy, and it allows you to
+                  take advantage of all the features our website has to offer.
+                  Once you're logged in, you'll be able to view your profile
+                  page and update your information at any time. Thank you for
+                  choosing our website!
+                </span>
+                <button onClick={handleRegister}>Sign In</button>
+              </>
             )}
           </div>
         </h5>
