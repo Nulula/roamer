@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import axios from "axios";
 import GeoAPI from "../utils/GeoApi";
 import Map from "./Map";
 import Weather from "./Weather";
@@ -23,6 +22,8 @@ function WrapperForSearch() {
     const [categorySearchValue,setCategorySearchValue] = useState("");
     const [startP,setStartP] = useState("");
     const [searching, setSearching] = useState(false);
+    const [categoryResponse, setCategoryResponse] = useState();
+
 
     // Function runs every time the search state changes
     useEffect(() => {
@@ -62,6 +63,7 @@ function WrapperForSearch() {
             GeoAPI.searchPlace(categorySearchValue, startP)
             .then((res) => {
                 console.log(res);
+                setCategoryResponse(res.data.features);
             })
             .catch(error => console.log(error));
         }, [searching,startP,coordinates.key,categorySearchValue]);
