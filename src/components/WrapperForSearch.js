@@ -19,7 +19,7 @@ function WrapperForSearch() {
         lon: 0,
         key: ""
     });
-    const [categoryValue,setCategoryValue] = useState("");
+    const [categoryValue,setCategoryValue] = useState("accommodation");
     const [categorySearchValue,setCategorySearchValue] = useState("");
     const [startP,setStartP] = useState("");
     const [searching, setSearching] = useState(false);
@@ -51,7 +51,7 @@ function WrapperForSearch() {
           return;
         }
       
-        const newStartP = `${coordinates.lat},${coordinates.lon}`;
+        const newStartP = `${coordinates.lon},${coordinates.lat}`;
         setStartP(newStartP);
       }, [coordinates]);
         //API call for categories
@@ -64,7 +64,7 @@ function WrapperForSearch() {
                 console.log(res);
             })
             .catch(error => console.log(error));
-        }, [searching,startP]);
+        }, [searching,startP,coordinates.key,categorySearchValue]);
 
     // Search form functions
     const handleCityChange = (event) => {
