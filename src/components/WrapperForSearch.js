@@ -98,24 +98,37 @@ function WrapperForSearch() {
         setSearching(true)
     };
 
-  return (
-    <div>
-      <SearchForm
-        cityValue={cityValue}
-        countryValue={countryValue}
-        handleCityChange={handleCityChange}
-        handleCountryChange={handleCountryChange}
-        handleSubmit={handleSubmit}
-      />
-        <SearchCategories 
-            categoryValue={categoryValue}
-            handleCategoryChange={handleCategoryChange}
-            handleCategorySubmit={handleCategorySubmit}
-            />
-      <Map lat={coordinates.lat} lon={coordinates.lon} key={coordinates.key} categoryResponse={categoryResponse}/>
-      <Weather lat={coordinates.lat} lon={coordinates.lon} />
-    </div>
-  );
+    if (!coordinates.key) {
+        return (
+            <SearchForm
+            cityValue={cityValue}
+            countryValue={countryValue}
+            handleCityChange={handleCityChange}
+            handleCountryChange={handleCountryChange}
+            handleSubmit={handleSubmit}
+          />
+        );
+    } else {
+        return (
+            <div>
+              <SearchForm
+                cityValue={cityValue}
+                countryValue={countryValue}
+                handleCityChange={handleCityChange}
+                handleCountryChange={handleCountryChange}
+                handleSubmit={handleSubmit}
+              />
+                <SearchCategories 
+                    categoryValue={categoryValue}
+                    handleCategoryChange={handleCategoryChange}
+                    handleCategorySubmit={handleCategorySubmit}
+                    />
+              <Map lat={coordinates.lat} lon={coordinates.lon} key={coordinates.key} categoryResponse={categoryResponse}/>
+              <Weather lat={coordinates.lat} lon={coordinates.lon} />
+            </div>
+          );
+    }
+
 }
 
 export default WrapperForSearch;
