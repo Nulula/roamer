@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import GeoAPI from "../utils/GeoApi";
+import GeoApi from "../utils/GeoApi";
 import Map from "./Map";
 import Weather from "./Weather";
 import SearchForm from "./SearchForm";
@@ -34,7 +34,7 @@ function WrapperForSearch() {
         const countryC = search.country;
 
         // API Call for location
-        GeoAPI.searchMap(cityC, countryC)
+        GeoApi.searchMap(cityC, countryC)
         .then((res) => {
             console.log("Res" + res.data.results[0].lat);
             setCoordinates({
@@ -60,7 +60,7 @@ function WrapperForSearch() {
             if (!searching || !coordinates.key) {
                 return;
             }
-            GeoAPI.searchPlace(categorySearchValue, startP)
+            GeoApi.searchPlace(categorySearchValue, startP)
             .then((res) => {
                 console.log(res);
                 setCategoryResponse(res.data.features);

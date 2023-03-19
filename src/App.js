@@ -10,6 +10,7 @@ import WrapperForSearch from "./components/WrapperForSearch"; // Importing the W
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import HomePage from "./pages/Home";
+import NearMe from "./pages/NearMe";
 
 function App() {
   return (
@@ -27,7 +28,7 @@ function App() {
           <Route path="/profile" element={<Profile />}></Route>{" "}
           {/*Defining the
           route for the Profile page component*/}
-          <Route path="/nearme" element={<WrapperForSearch />}></Route>{" "}
+          <Route path="/nearme" element={<NearMe />}></Route>{" "}
           {/*
           Defining the route for the WrapperForSearch component*/}
           <Route path="/home" element={<WrapperForSearch />}></Route>{" "}
