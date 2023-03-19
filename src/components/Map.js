@@ -8,7 +8,7 @@ function Map({lat, lon, categoryResponse}) {
     return (
         <div>
             <MapContainer 
-            center={lat && lon != 0 ? [lat, lon] : [51.509865, -0.118092]} 
+            center={lat && lon !== 0 ? [lat, lon] : [51.509865, -0.118092]} 
             zoom={13}
             scrollWheelZoom={false}>
                 <TileLayer
