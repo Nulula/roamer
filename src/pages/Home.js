@@ -1,6 +1,7 @@
 import React from "react";
 import SearchForm from "../components/SearchForm";
 import bgImage from "../assets/backgroundImg.jpg";
+import WrapperForSearch from "../components/WrapperForSearch";
 
 function HomePage() {
   const styles = {
@@ -11,7 +12,7 @@ function HomePage() {
 
   return (
     <div style={styles}>
-      <SearchForm />
+      <WrapperForSearch />
     </div>
   );
 }
