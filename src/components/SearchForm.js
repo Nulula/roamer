@@ -28,6 +28,7 @@ const SearchForm = ({
           value={countryValue}
           onChange={handleCountryChange}
         >
+          <option defaultValue>Select country</option>
           {countries.map((country) => (
             <option key={country.value} value={country.key}>
               {country.value}

@@ -18,7 +18,7 @@ function WrapperForSearch() {
         lon: 0,
         key: ""
     });
-    const [categoryValue,setCategoryValue] = useState("accommodation");
+    const [categoryValue,setCategoryValue] = useState("");
     const [categorySearchValue,setCategorySearchValue] = useState("");
     const [startP,setStartP] = useState("");
     const [searching, setSearching] = useState(false);

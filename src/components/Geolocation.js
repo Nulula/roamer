@@ -7,20 +7,26 @@ import GeoApi from '../utils/GeoApi';
 function Geolocation() {
     const [latitude,setLatitude] = useState(null);
     const [longitude,setLongitude] = useState(null);
-    const [categoryValue,setCategoryValue] = useState("accommodation");
+    const [categoryValue,setCategoryValue] = useState();
     const [categorySearchValue,setCategorySearchValue] = useState("");
     const [startP,setStartP] = useState("");
     const [searching, setSearching] = useState(false);
     const [categoryResponse, setCategoryResponse] = useState();
 
-
+    useEffect(() => {
+        if (!latitude || !longitude) {
+          return;
+        }
+      
+        const newStartP = `${longitude},${latitude}`;
+        setStartP(newStartP);
+      }, [latitude, longitude]);
+      
      //API call for categories
      useEffect(() => {
         if (!searching || !latitude) {
             return;
         }
-        const newStartP = `${longitude},${latitude}`;
-        setStartP(newStartP);
 
         GeoApi.searchPlace(categorySearchValue, startP)
         .then((res) => {
