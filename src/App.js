@@ -5,7 +5,7 @@ import { BrowserRouter as Router, Route, Routes } from "react-router-dom"; // Im
 import Nav from "./components/Nav"; // Importing the Navigation component
 import Footer from "./components/Footer"; // Importing the Footer component
 import Contact from "./pages/Contact"; // Importing the Contact page component
-import Profile from "./pages/Profile";
+import Profile from "./pages/Profile/Profile";
 import WrapperForSearch from "./components/WrapperForSearch"; // Importing the WrapperForSearch component
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
