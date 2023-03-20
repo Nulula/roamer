@@ -14,16 +14,26 @@ function PlacesInfo({ data }) {
 
   return (
     <div className="placesList">
-      <ol>
-        {places.map((place) => {
+      <ul>
+        {places.map((place, index) => {
           return (
-            <li key={place.properties.datasource.raw.osm_id}>
-              <h2>{place.properties.address_line1}</h2>
+            <li key={index}>
+              <h2>
+                {index + 1}. {place.properties.address_line1}
+              </h2>
               <p>{place.properties.address_line2}</p>
+              <p>{place.properties.datasource.raw.phone}</p>
+              <a
+                href={place.properties.datasource.raw.website}
+                rel="noreferrer"
+                target="_blank"
+              >
+                {place.properties.datasource.raw.website}
+              </a>
             </li>
           );
         })}
-      </ol>
+      </ul>
     </div>
   );
 }
