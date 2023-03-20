@@ -5,6 +5,7 @@ import Weather from "./Weather";
 import SearchForm from "./SearchForm";
 import SearchCategories from "./SearchCategories";
 import PlacesInfo from "./PlacesInfo";
+import logo from "../assets/Roamer_Logo.png";
 
 function WrapperForSearch() {
   // Setting states
@@ -99,13 +100,17 @@ function WrapperForSearch() {
 
   if (!coordinates.key) {
     return (
+      <div className="text-center">
+        <img src={logo} alt="Roamer logo - a boot with the brand name Roamer underneath"></img>
+        <p>Search for a city below, or click 'Near Me' to search your current area.</p>
         <SearchForm
-        cityValue={cityValue}
-        countryValue={countryValue}
-        handleCityChange={handleCityChange}
-        handleCountryChange={handleCountryChange}
-        handleSubmit={handleSubmit}
-      />
+          cityValue={cityValue}
+          countryValue={countryValue}
+          handleCityChange={handleCityChange}
+          handleCountryChange={handleCountryChange}
+          handleSubmit={handleSubmit}
+        />
+      </div>
     );
   } else {
     return (
