@@ -16,7 +16,8 @@ function LoginModal() {
     fontStyle: "italic",
   };
 
-  // Use the useSessionStorage hook to store and retrieve user data
+  // Use the useLocalStorage hook to store and retrieve user data
+
   const [userData, setUserData] = useSessionStorage("userData", {
     name: "",
     password: "",
@@ -32,10 +33,10 @@ function LoginModal() {
   });
 
   // Use the useState hook to keep track of the current form type (sign in or login)
-  const [formType, setFormType] = useState("signIn");
+  const [formType, setFormType] = useState("login");
 
   // This function is called when the user submits the form
-  function handleSubmit(event) {
+  async function handleSubmit(event) {
     event.preventDefault();
 
     // Validate that all form fields are filled in
@@ -44,34 +45,51 @@ function LoginModal() {
       return;
     }
 
-    // Validate that the passwords match if signing up
-    if (
-      formType === "signIn" &&
-      formData.password !== formData.repeatPassword
-    ) {
-      toast.error("Oops! Passwords mismatch!");
-      return;
-    }
-
     // Check if the user exists in the local storage if logging in
-    const localStorageData = JSON.parse(localStorage.getItem("localData"));
-    if (
-      formType === "login" &&
-      (!localStorageData ||
-        localStorageData.password !== formData.password ||
-        localStorageData.name !== formData.name)
-    ) {
-      toast.error("Incorrect username or password!");
-      return;
+    if (formType === "login") {
+      const localStorageData = JSON.parse(localStorage.getItem("userData"));
+      if (
+        localStorageData &&
+        localStorageData.name === formData.name &&
+        localStorageData.password === formData.password
+      ) {
+        // Update the user data and hide the modal
+        setUserData({
+          ...userData,
+          ...formData,
+          signedIn: true,
+        });
+        setShowModal(false);
+        return;
+      } else {
+        toast.error("Incorrect username or password!");
+        return;
+      }
     }
 
-    // Update the user data and hide the modal
-    setUserData({
-      ...userData,
-      ...formData,
-      signedIn: true,
-    });
-    setShowModal(false);
+    // Check if the user already exists in the local storage if signing up
+    if (formType === "signIn") {
+      const localStorageData = JSON.parse(localStorage.getItem("userData"));
+      if (localStorageData && localStorageData.name === formData.name) {
+        toast.error("Username already exists!");
+        return;
+      }
+
+      // Validate that the passwords match
+      if (formData.password !== formData.repeatPassword) {
+        toast.error("Oops! Passwords mismatch!");
+        return;
+      }
+
+      // Save the user data to the local storage and hide the modal
+      localStorage.setItem("userData", JSON.stringify(formData));
+      setUserData({
+        ...userData,
+        ...formData,
+        signedIn: true,
+      });
+      setShowModal(false);
+    }
   }
 
   // This function is called when a form field changes
@@ -115,50 +133,102 @@ function LoginModal() {
   return (
     <>
       {showModal && (
-        <div className="login-modal" style={styles}>
-          <form onSubmit={handleSubmit}>
-            <label>
-              Name:
-              <input
-                type="text"
-                name="name"
-                value={formData.name}
-                onChange={handleChange}
-              />
-            </label>
-            <label>
-              Password:
-              <input
-                type="password"
-                name="password"
-                value={formData.password}
-                onChange={handleChange}
-              />
-            </label>
-            {formType === "signIn" && (
-              <label>
-                Repeat Password:
-                <input
-                  type="password"
-                  name="repeatPassword"
-                  value={formData.repeatPassword}
-                  onChange={handleChange}
-                />
-              </label>
-            )}
-            <button type="submit">
-              {formType === "signIn" ? "Sign In" : "Log In"}
-            </button>
-          </form>
-          <div className="login-modal-buttons">
-            {formType === "signIn" ? (
-              <>
-                <button onClick={handleLoginClick}>Log In</button>
-                <button onClick={handleSkip}>Skip Login</button>
-              </>
-            ) : (
-              <button onClick={handleRegister}>Sign In</button>
-            )}
+        <div className="modal">
+          <div className="modal-content">
+            <ul style={{ listStyle: "none" }}>
+              <form onSubmit={handleSubmit}>
+                <li>
+                  <input
+                    type="text"
+                    name="name"
+                    placeholder="name"
+                    value={formData.name}
+                    onChange={handleChange}
+                  />
+                </li>
+
+                <li>
+                  <input
+                    type="password"
+                    name="password"
+                    placeholder="password"
+                    value={formData.password}
+                    onChange={handleChange}
+                  />
+                </li>
+
+                {formType === "signIn" && (
+                  <li>
+                    <input
+                      type="password"
+                      name="repeatPassword"
+                      placeholder="repeatPassword"
+                      value={formData.repeatPassword}
+                      onChange={handleChange}
+                    />
+                  </li>
+                )}
+                <button className="btn btn-success rounded-start" type="submit">
+                  {formType === "signIn" ? "Sign In" : "Log In"}
+                </button>
+              </form>
+            </ul>
+            <div>
+              {formType === "signIn" ? (
+                <>
+                  <p onClick={handleLoginClick}>
+                    Already have an account?
+                    <span
+                      style={{
+                        textDecoration: "underline",
+                        cursor: "pointer",
+                        color: "green",
+                      }}
+                    >
+                      Log In
+                    </span>
+                  </p>
+
+                  <p
+                    onClick={handleSkip}
+                    style={{
+                      textDecoration: "underline",
+                      fontSize: "12px",
+                      cursor: "pointer",
+                      color: "grey",
+                    }}
+                  >
+                    Proceed without registration
+                  </p>
+                </>
+              ) : (
+                <div>
+                  <p onClick={handleRegister}>
+                    If you don't have an account, follow the link to{" "}
+                    <span
+                      style={{
+                        textDecoration: "underline",
+                        cursor: "pointer",
+                        color: "green",
+                      }}
+                    >
+                      register
+                    </span>
+                  </p>
+                  <p
+                    onClick={handleSkip}
+                    style={{
+                      textDecoration: "underline",
+                      fontSize: "12px",
+                      cursor: "pointer",
+                      color: "grey",
+                    }}
+                  >
+                    Proceed without registration
+                  </p>
+                </div>
+              )}
+            </div>
           </div>
         </div>
       )}
@@ -177,7 +247,12 @@ function LoginModal() {
                   page and update your information at any time. Thank you for
                   choosing our website!
                 </span>
-                <button onClick={handleRegister}>Sign In</button>
+                <button
+                  className="btn btn-success rounded-start"
+                  onClick={handleRegister}
+                >
+                  Sign In
+                </button>
               </>
             )}
           </div>
