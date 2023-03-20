@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import moment from "moment";
 import { NavLink } from "react-router-dom";
-import logo from "../assets/Roumer_Logo.png";
+import logo from "../assets/Roamer_Logo.png";
 
 // Styles for the Nav component
 const styles = {

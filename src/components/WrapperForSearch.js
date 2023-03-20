@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from "react";
-import GeoAPI from "../utils/GeoApi";
+import GeoApi from "../utils/GeoApi";
 import Map from "./Map";
 import Weather from "./Weather";
 import SearchForm from "./SearchForm";
 import SearchCategories from "./SearchCategories";
 import PlacesInfo from "./PlacesInfo";
+import logo from "../assets/Roamer_Logo.png";
 
 function WrapperForSearch() {
   // Setting states
@@ -19,7 +20,7 @@ function WrapperForSearch() {
     lon: 0,
     key: "",
   });
-  const [categoryValue, setCategoryValue] = useState("accommodation");
+  const [categoryValue, setCategoryValue] = useState("");
   const [categorySearchValue, setCategorySearchValue] = useState("");
   const [startP, setStartP] = useState("");
   const [searching, setSearching] = useState(false);
@@ -34,7 +35,7 @@ function WrapperForSearch() {
     const countryC = search.country;
 
     // API Call for location
-    GeoAPI.searchMap(cityC, countryC)
+    GeoApi.searchMap(cityC, countryC)
       .then((res) => {
         console.log("Res" + res.data.results[0].lat);
         setCoordinates({
@@ -59,7 +60,7 @@ function WrapperForSearch() {
     if (!searching || !coordinates.key) {
       return;
     }
-    GeoAPI.searchPlace(categorySearchValue, startP)
+    GeoApi.searchPlace(categorySearchValue, startP)
       .then((res) => {
         console.log(res);
         setCategoryResponse(res.data.features);
@@ -97,31 +98,47 @@ function WrapperForSearch() {
     setSearching(true);
   };
 
-  return (
-    <div>
-      <SearchForm
-        cityValue={cityValue}
-        countryValue={countryValue}
-        handleCityChange={handleCityChange}
-        handleCountryChange={handleCountryChange}
-        handleSubmit={handleSubmit}
-      />
-      <SearchCategories
-        categoryValue={categoryValue}
-        handleCategoryChange={handleCategoryChange}
-        handleCategorySubmit={handleCategorySubmit}
-      />
-      <PlacesInfo data={categoryResponse} />
-
-      <Map
-        lat={coordinates.lat}
-        lon={coordinates.lon}
-        key={coordinates.key}
-        categoryResponse={categoryResponse}
-      />
-      <Weather lat={coordinates.lat} lon={coordinates.lon} />
-    </div>
-  );
+  if (!coordinates.key) {
+    return (
+      <div className="text-center">
+        <img src={logo} alt="Roamer logo - a boot with the brand name Roamer underneath"></img>
+        <p>Search for a city below, or click 'Near Me' to search your current area.</p>
+        <SearchForm
+          cityValue={cityValue}
+          countryValue={countryValue}
+          handleCityChange={handleCityChange}
+          handleCountryChange={handleCountryChange}
+          handleSubmit={handleSubmit}
+        />
+      </div>
+    );
+  } else {
+    return (
+      <div>
+        <SearchForm
+          cityValue={cityValue}
+          countryValue={countryValue}
+          handleCityChange={handleCityChange}
+          handleCountryChange={handleCountryChange}
+          handleSubmit={handleSubmit}
+        />
+        <SearchCategories
+          categoryValue={categoryValue}
+          handleCategoryChange={handleCategoryChange}
+          handleCategorySubmit={handleCategorySubmit}
+        />
+        <PlacesInfo data={categoryResponse} />
+  
+        <Map
+          lat={coordinates.lat}
+          lon={coordinates.lon}
+          key={coordinates.key}
+          categoryResponse={categoryResponse}
+        />
+        <Weather lat={coordinates.lat} lon={coordinates.lon} />
+      </div>
+    );
+  }
 }
 
 export default WrapperForSearch;
