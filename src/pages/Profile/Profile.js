@@ -1,59 +1,70 @@
-// Import React library, useState and useEffect hooks, and some custom hooks
-import React from "react";
-import { useSessionStorage } from "./SessionStorage";
+import React, { useState, useEffect } from "react";
 import { useLocalStorage } from "./LocalStorage";
-import { useEffect } from "react";
-import Login from "./Login"; // Import Login component
-import bgImage from "./assets/backgroundImg.jpg"; // Import background image
+import { useSessionStorage } from "./SessionStorage";
+import Login from "./Login";
+import bgImage from "./assets/backgroundImg.jpg";
 
-// Define a functional component called Profile
+// Define the styles for the profile page
+const styles = {
+  backgroundImage: `url(${bgImage})`,
+  backgroundSize: "cover",
+  height: "88vh",
+  display: "flex",
+  fontStyle: "italic",
+};
+
+// Define the styles for the logout button
+const buttonStyle = {
+  height: "35px",
+  borderRadius: "5px",
+  background: "green",
+  border: "transparent",
+  color: "white",
+};
+
+// Define the Profile component
 function Profile() {
-  // Define some inline styles as an object
-  const styles = {
-    backgroundImage: `url(${bgImage})`,
-    backgroundSize: "cover",
-    height: "88vh",
-    display: "flex",
-    fontStyle: "italic",
-  };
-  const buttonStyle = {
-    height: "50px",
-  };
+  // Use local storage to store user data
+  const [localData, setLocalData] = useLocalStorage("userData", {});
 
-  // Call useSessionStorage and useLocalStorage custom hooks to get and set data from browser's sessionStorage and localStorage
-  const [userData, setUserData] = useSessionStorage("userData", {});
-  const [localData, setLocalData] = useLocalStorage("localData", {});
+  // Use session storage to store user data
+  const [sessionData, setSessionData] = useSessionStorage("userData", {});
 
-  // Call useEffect hook to set localData when userData changes
+  // Update local storage when local data changes
   useEffect(() => {
-    setLocalData(userData);
-  }, []);
+    setLocalData(localData);
+  }, [localData]);
 
-  // Define a function to handle logout
-  function handleLogout() {
-    // Call clearSessionStorage function to remove user data from sessionStorage
+  // Update session storage when session data changes
+  useEffect(() => {
+    setSessionData(sessionData);
+  }, [sessionData]);
+
+  // Save session data to local storage and clear session storage
+  function saveLocalStorage() {
+    localStorage.removeItem("userData");
+    localStorage.setItem("userData", JSON.stringify(sessionData));
     clearSessionStorage();
-    // Update userData by setting the signedIn property to false
-    setUserData((prevUserData) => ({
-      ...prevUserData,
-      signedIn: false,
-    }));
   }
 
-  // Define a function to remove user data from sessionStorage
+  // Handle logout by saving session data to local storage and clearing session data
+  function handleLogout() {
+    saveLocalStorage();
+    setSessionData({});
+  }
+
+  // Clear session storage
   function clearSessionStorage() {
     sessionStorage.removeItem("userData");
   }
 
-  // Render Profile component
   return (
     <>
-      {/* Render different content based on whether user is signed in or not */}
-      {userData.signedIn ? (
-        // If user is signed in, render a welcome message and a logout button
-        <h5 style={styles}>
+      {sessionData.signedIn ? (
+        // Show the profile page if the user is signed in
+        <p style={styles}>
           <div className="container mt-5">
-            Welcome to your profile page, {userData.name}! Here, you can find
+            Welcome to your profile page, {sessionData.name}! Here, you can find
             all the places you saved during your previous trips.
           </div>
           <button
@@ -63,14 +74,13 @@ function Profile() {
           >
             Logout
           </button>
-        </h5>
+        </p>
       ) : (
-        // If user is not signed in, render the Login component
-        <Login setUserData={setUserData} />
+        // Show the login page if the user is not signed in
+        <Login setSessionData={setSessionData} />
       )}
     </>
   );
 }
 
-// Export Profile component as a default export
 export default Profile;

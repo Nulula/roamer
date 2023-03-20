@@ -1,11 +1,5 @@
 import { useState, useEffect } from "react";
 
-/**
- * A custom hook that uses session storage to persist and retrieve data.
- * @param {string} key - The key to store the data under in session storage.
- * @param {any} defaultValue - The default value to use if the key does not exist in session storage.
- * @returns {[any, function, function]} - Returns an array containing the stored value, a function to set the value, and a function to remove the item from session storage.
- */
 export function useSessionStorage(key, defaultValue) {
   // Use useState to retrieve the stored value from session storage, or the default value if the key does not exist
   const [value, setItem] = useState(() => {
