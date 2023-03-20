@@ -134,5 +134,6 @@ function WrapperForSearch() {
       </div>
     );
   }
+}
 
 export default WrapperForSearch;
