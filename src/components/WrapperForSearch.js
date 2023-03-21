@@ -25,6 +25,8 @@ function WrapperForSearch() {
   const [startP, setStartP] = useState("");
   const [searching, setSearching] = useState(false);
   const [categoryResponse, setCategoryResponse] = useState();
+  const [startPoint, setStartPoint] = useState("");
+  const [finishPoint, setFinishPoint] = useState("");
 
   // Function runs every time the search state changes
   useEffect(() => {
@@ -68,6 +70,23 @@ function WrapperForSearch() {
       .catch((error) => console.log(error));
   }, [searching, startP, coordinates.key, categorySearchValue]);
 
+  //API call for the shortest route
+  useEffect(() => {
+    if (!startPoint || !finishPoint) {
+      return;
+    }
+    console.log(startPoint);
+    GeoApi.searchRoute(startPoint,finishPoint)
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((error) => console.log(error));
+  },[startPoint,finishPoint])
+
+    useEffect(() => {
+        console.log("Start point updated:", startPoint);
+      },[startPoint]);
+
   // Search form functions
   const handleCityChange = (event) => {
     setCityValue(event.target.value);
@@ -97,6 +116,16 @@ function WrapperForSearch() {
     setCategoryValue("");
     setSearching(true);
   };
+
+    //search parameters for the shortest route
+    const handleStartPointChange = (newStartPoint) => {
+      setStartPoint(newStartPoint);
+      console.log(startPoint)
+    };
+  
+    const handleFinishPointChange = (newFinishPoint) => {
+      setFinishPoint(newFinishPoint);
+    };
 
   if (!coordinates.key) {
     return (
@@ -134,7 +163,8 @@ function WrapperForSearch() {
           lon={coordinates.lon}
           key={coordinates.key}
           categoryResponse={categoryResponse}
-        />
+          handleStartPointChange={handleStartPointChange}
+          handleFinishPointChange={handleFinishPointChange}      />
         <Weather lat={coordinates.lat} lon={coordinates.lon} />
       </div>
     );
