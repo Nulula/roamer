@@ -135,7 +135,7 @@ function LoginModal() {
       {showModal && (
         <div className="modal">
           <div className="modal-content">
-            <ul style={{ listStyle: "none" }}>
+            <ul>
               <form onSubmit={handleSubmit}>
                 <li>
                   <input

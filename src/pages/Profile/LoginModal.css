@@ -8,15 +8,25 @@
     background-color: rgba(0, 0, 0, 0.5);
     justify-content: center;
     align-items: center;
+    color: #000;
   }
   
   .modal-content {
     display: flex;
     align-items: center;
     background-color: #fff;
-    padding: 25px 25px 20px 0;
+    padding: 25px;
     border-radius: 12px;
     position: relative;
+  }
+
+  .modal-content ul {
+    list-style-type: none;
+    padding: 0px;
+  }
+
+  .modal-content li {
+    margin: 2px 0px;
   }
   
   .close {
@@ -36,6 +46,6 @@
 
   @media screen and (min-width: 1024px) {
     .modal-content {
-      width: 25%;
+      width: 28%;
     }
   }
