@@ -14,12 +14,19 @@ function PlacesInfo({ data }) {
     console.log(data);
   }, [data]);
 
+  // if user is not loged in he cant save to local storage
   const handleSave = (event) => {
+    const sessionData = sessionStorage.getItem("userData");
+    if (!sessionData) {
+      toast.error("Please log in first to save the place.");
+      return;
+    }
     const id = event.target.getAttribute("data-id");
     const place = places[id];
     localStorage.setItem(`place-${id}`, JSON.stringify(place));
     toast.success("Item has been saved to Profile");
   };
+
   return (
     <div className="placesList">
       <ul>
