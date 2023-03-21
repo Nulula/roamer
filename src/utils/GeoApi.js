@@ -27,8 +27,10 @@ const routeCall3 = "&mode=walk";
 
 const placesCall1 = "v2/places?categories=";
 const placesCall2 = "&filter=circle:";
-const placesCall3 = ",1000&bias=proximity:";
+const placesCall3 = ",1000";
 const placesCall4 = "&limit=20";
+
+// &bias=proximity:
 
 export default {
     searchMap: function(city, country) {
@@ -40,7 +42,7 @@ export default {
     },
 
     searchPlace: function(category, point) {
-        return axios.get(BASEURL + placesCall1 + category + placesCall2 + point + placesCall3 + point + placesCall4 + APIKEY)
+        return axios.get(BASEURL + placesCall1 + category + placesCall2 + point + placesCall3 + placesCall4 + APIKEY)
     }
 
 }
