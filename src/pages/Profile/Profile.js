@@ -9,7 +9,6 @@ const styles = {
   backgroundImage: `url(${bgImage})`,
   backgroundSize: "cover",
   height: "88vh",
-  display: "flex",
   fontStyle: "italic",
 };
 

@@ -41,6 +41,10 @@ export default {
 
     searchPlace: function(category, point) {
         return axios.get(BASEURL + placesCall1 + category + placesCall2 + point + placesCall3 + point + placesCall4 + APIKEY)
+    },
+
+    searchCityName: function(latitude, longitude) {
+        return axios.get("https://api.geoapify.com/v1/geocode/reverse?lat=" + latitude + "&lon=" + longitude + APIKEY)
     }
 
 }

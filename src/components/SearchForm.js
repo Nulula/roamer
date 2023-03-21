@@ -10,35 +10,40 @@ const SearchForm = ({
 }) => {
   return (
     <>
-      <div className="form-group">
-        <label htmlFor="cityInput">City:</label>
-        <input
-          type="text"
-          id="cityInput"
-          aria-describedby="city"
-          placeholder="Enter city"
-          value={cityValue}
-          onChange={handleCityChange}
-        />
-      </div>
-      <div className="form-group">
-        <label htmlFor="dropdown-field">Country:</label>
-        <select
-          id="dropdown-field"
-          value={countryValue}
-          onChange={handleCountryChange}
-        >
-          <option defaultValue>Select country</option>
-          {countries.map((country) => (
-            <option key={country.value} value={country.key}>
-              {country.value}
-            </option>
-          ))}
-        </select>
-      </div>
-      <button type="submit" className="btn btn-primary" onClick={handleSubmit}>
-        Submit
-      </button>
+      <form className="form-group row gx-2 align-items-center justify-content-center">
+        <div className="col-sm-11 col-lg-4">
+          <input
+            className="form-control"
+            type="text"
+            id="cityInput"
+            aria-describedby="city"
+            placeholder="Enter city"
+            value={cityValue}
+            onChange={handleCityChange}
+          />
+        </div>
+  
+        <div className="col-sm-11 col-lg-4">
+          <select
+            className="form-select"
+            id="dropdown-field"
+            value={countryValue}
+            onChange={handleCountryChange}
+          >
+            <option defaultValue>Country</option>
+            {countries.map((country) => (
+              <option key={country.value} value={country.key}>
+                {country.value}
+              </option>
+            ))}
+          </select>
+        </div>
+        <div className="col-sm-auto col-lg-auto">
+          <button type="submit" className="btn btn-primary" onClick={handleSubmit}>
+          Submit
+          </button>
+        </div>
+      </form>
     </>
   );
 };
