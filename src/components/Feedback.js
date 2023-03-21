@@ -1,9 +1,10 @@
-import React, { useRef, useState } from "react";
+import React, { useRef } from "react";
 import emailjs from "@emailjs/browser";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function Feedback() {
   const form = useRef();
-  const [notification, setNotification] = useState("");
   const sendEmail = (e) => {
     e.preventDefault();
 
@@ -17,20 +18,13 @@ function Feedback() {
       .then(
         (result) => {
           console.log(result.text);
-          console.log("Email has been sent");
-          setNotification("Your message has been sent");
-          setTimeout(() => {
-            setNotification("");
-          }, 3000);
+          toast.success("Your message has been sent");
           form.current.reset();
         },
         (error) => {
           console.log(error.text);
-          console.log("Error");
-          setNotification("There was an error sending your message");
-          setTimeout(() => {
-            setNotification("");
-          }, 3000);
+          toast.error("There was an error sending your message");
+          form.current.reset();
         }
       );
   };
@@ -65,7 +59,6 @@ function Feedback() {
       <button className="btn btn-primary" value="submit" type="submit">
         Send
       </button>
-      <h3>{notification}</h3>
     </form>
   );
 }
