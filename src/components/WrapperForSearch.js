@@ -6,6 +6,8 @@ import SearchForm from "./SearchForm";
 import SearchCategories from "./SearchCategories";
 import PlacesInfo from "./PlacesInfo";
 import logo from "../assets/Roamer_Logo.png";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function WrapperForSearch() {
   // Setting states
@@ -44,7 +46,12 @@ function WrapperForSearch() {
           key: res.data.results[0].place_id,
         });
       })
-      .catch((error) => console.log(error));
+      .catch((error) => {
+        console.log(error);
+        toast.error(
+          `Sorry, ${cityC} was not found in ${countryC}.\nPlease check if city name and country is correct.`
+        );
+      });
   }, [search]);
 
   useEffect(() => {
@@ -101,8 +108,14 @@ function WrapperForSearch() {
   if (!coordinates.key) {
     return (
       <div className="text-center">
-        <img src={logo} alt="Roamer logo - a boot with the brand name Roamer underneath"></img>
-        <p>Search for a city below, or click 'Near Me' to search your current area.</p>
+        <img
+          src={logo}
+          alt="Roamer logo - a boot with the brand name Roamer underneath"
+        ></img>
+        <p>
+          Search for a city below, or click 'Near Me' to search your current
+          area.
+        </p>
         <SearchForm
           cityValue={cityValue}
           countryValue={countryValue}
@@ -128,7 +141,7 @@ function WrapperForSearch() {
           handleCategorySubmit={handleCategorySubmit}
         />
         <PlacesInfo data={categoryResponse} />
-  
+
         <Map
           lat={coordinates.lat}
           lon={coordinates.lon}
