@@ -1,5 +1,7 @@
 import React from "react";
 import { useState, useEffect } from "react";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function PlacesInfo({ data }) {
   const [places, setPlaces] = useState([]);
@@ -16,6 +18,7 @@ function PlacesInfo({ data }) {
     const id = event.target.getAttribute("data-id");
     const place = places[id];
     localStorage.setItem(`place-${id}`, JSON.stringify(place));
+    toast.success("Item has been saved to Profile");
   };
   return (
     <div className="placesList">
