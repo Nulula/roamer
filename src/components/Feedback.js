@@ -29,7 +29,7 @@ function Feedback() {
       );
   };
   return (
-    <form className="signup-form " ref={form} onSubmit={sendEmail}>
+    <form className="feedback-form" ref={form} onSubmit={sendEmail}>
       <div className="form-group">
         <label>Your Name</label>
         <input

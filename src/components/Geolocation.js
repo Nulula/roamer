@@ -6,6 +6,7 @@ import SearchCategories from "./SearchCategories";
 import PlacesInfo from "./PlacesInfo";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import axios from "axios";
 
 function Geolocation() {
   // Setting states
@@ -16,6 +17,7 @@ function Geolocation() {
   const [startP, setStartP] = useState("");
   const [searching, setSearching] = useState(false);
   const [categoryResponse, setCategoryResponse] = useState();
+  const [locationName, setLocationName] = useState([]);
 
   // Checks for coordinates and sets them as the start point
   useEffect(() => {
@@ -25,6 +27,13 @@ function Geolocation() {
 
     const newStartP = `${longitude},${latitude}`;
     setStartP(newStartP);
+
+    GeoApi.searchCityName(latitude, longitude)
+    .then((res) => {
+      console.log(res);
+      setLocationName([res.data.features[0].properties.city, res.data.features[0].properties.country])
+    });
+
   }, [latitude, longitude]);
 
   //API call for categories
@@ -80,45 +89,42 @@ function Geolocation() {
 
   if (!latitude) {
     return (
-      <div className="text-center">
-        <p>
-          Looking for something nearby? Click the button below to search your
-          current location.
-        </p>
-        <button
-          type="submit"
-          className="btn btn-primary"
-          id="nearMeButton"
-          onClick={handleClick}
-        >
-          Find me
-        </button>
-        <br />
-        <br />
-        <p>
-          (Make sure to click 'allow' when the browser asks to use your
-          location)
-        </p>
+      <div className="find-me-container">
+        <div className="find-me-text text-center">
+          <p>Looking for something nearby? Click the button below to search your current location.</p>
+          <button type="submit" className="btn btn-primary" id="nearMeButton" onClick={handleClick}>Find me</button>
+          <br /><br />
+          <p>(Make sure to click 'allow' when the browser asks to use your location)</p>
+        </div>
       </div>
     );
   } else {
     return (
-      <div>
-        <SearchCategories
-          categoryValue={categoryValue}
-          handleCategoryChange={handleCategoryChange}
-          handleCategorySubmit={handleCategorySubmit}
-        />
-        <PlacesInfo data={categoryResponse} />
-
+      <div className="row">
+      <h1 className="page-title">Currently Roaming: {locationName[0]}, {locationName[1]}</h1>
+      <div className="col-lg-8">
         <Map
           lat={latitude}
           lon={longitude}
           key={[latitude, longitude]}
           categoryResponse={categoryResponse}
         />
+      </div>
+      <div className="col-lg-4 side-panel">
+        <div className="category-search">
+          <h3>What do you want to do?</h3>
+            <SearchCategories 
+              categoryValue={categoryValue}
+              handleCategoryChange={handleCategoryChange}
+              handleCategorySubmit={handleCategorySubmit}
+            />
+        </div>
+        <div className="places-list-container">
+          <PlacesInfo data={categoryResponse} />
+        </div>
         <Weather lat={latitude} lon={longitude} />
       </div>
+    </div>
     );
   }
 }

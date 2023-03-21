@@ -38,9 +38,9 @@ function PlacesInfo({ data }) {
         {places.map((place, index) => {
           return (
             <li key={index}>
-              <h2>
+              <h4>
                 {index + 1}. {place.properties.address_line1}
-              </h2>
+              </h4>
               <p>{place.properties.address_line2}</p>
               <p>{place.properties.datasource.raw.phone}</p>
               <a
