@@ -5,6 +5,7 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  color: #fff;
 }
 
 code {
@@ -73,7 +74,7 @@ h1, h2, h3 {
   margin: 20px;
   padding: 40px;
   border-radius: 25px;
-  background-color: rgba(255, 255, 255, 0.7);
+  background-color: rgba(108, 117, 125, 0.9);
 }
 
 .home-search-form img {
@@ -97,7 +98,6 @@ h1, h2, h3 {
   height: 150px;
 }
 
-
 .places-list-container ul {
   list-style: none;
 }
@@ -105,12 +105,25 @@ h1, h2, h3 {
 .city-search, 
 .category-search, 
 .places-list-container, 
-.card,
-.find-me-container {
-  background-color: rgba(255, 255, 255, 0.7);
+.card {
+  background-color: rgba(108, 117, 125, 0.9);
   padding: 5px;
   margin-bottom: 5px;
   border-radius: 20px;
+}
+
+.find-me-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.find-me-text {
+  margin: 20px;
+  padding: 40px;
+  border-radius: 25px;
+  background-color: rgba(108, 117, 125, 0.9);
 }
 
 .row {
@@ -128,8 +141,11 @@ h1, h2, h3 {
 .feedback-form {
   width: 80%;
   max-width: 800px;
-  margin-top: 20px;
   display: flex;
   flex-direction: column;
   gap: 20px;
+  background-color: rgba(108, 117, 125, 0.9);
+  margin: 20px;
+  padding: 40px;
+  border-radius: 25px;
 }

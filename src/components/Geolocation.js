@@ -4,6 +4,7 @@ import Map from "./Map";
 import Weather from "./Weather";
 import SearchCategories from "./SearchCategories";
 import PlacesInfo from "./PlacesInfo";
+import axios from "axios";
 
 function Geolocation() {
   // Setting states
@@ -14,6 +15,7 @@ function Geolocation() {
   const [startP, setStartP] = useState("");
   const [searching, setSearching] = useState(false);
   const [categoryResponse, setCategoryResponse] = useState();
+  const [locationName, setLocationName] = useState([]);
 
   // Checks for coordinates and sets them as the start point
   useEffect(() => {
@@ -23,6 +25,13 @@ function Geolocation() {
 
     const newStartP = `${longitude},${latitude}`;
     setStartP(newStartP);
+
+    axios.get("https://api.geoapify.com/v1/geocode/reverse?lat=" + latitude + "&lon=" + longitude + "&type=city&format=json&apiKey=8f4690110c99450d8e8c77713b77c534")
+    .then((res) => {
+      console.log(res);
+      setLocationName([res.data.results[0].city, res.data.results[0].country])
+    });
+
   }, [latitude, longitude]);
 
   //API call for categories
@@ -68,7 +77,7 @@ function Geolocation() {
   if (!latitude) {
     return (
       <div className="find-me-container">
-        <div className="text-center">
+        <div className="find-me-text text-center">
           <p>Looking for something nearby? Click the button below to search your current location.</p>
           <button type="submit" className="btn btn-primary" id="nearMeButton" onClick={handleClick}>Find me</button>
           <br /><br />
@@ -79,7 +88,7 @@ function Geolocation() {
   } else {
     return (
       <div className="row">
-      <h1 className="page-title">Currently Roaming: {!coordinates.key ? "London" : coordinates.cityName}</h1>
+      <h1 className="page-title">Currently Roaming: {locationName[0]}, {locationName[1]}</h1>
       <div className="col-lg-8">
         <Map
           lat={latitude}

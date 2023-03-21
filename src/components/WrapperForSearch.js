@@ -18,6 +18,7 @@ function WrapperForSearch() {
   const [cityValue, setCityValue] = useState("");
   const [countryValue, setCountryValue] = useState("");
   const [coordinates, setCoordinates] = useState({
+    cityName: "",
     lat: 0,
     lon: 0,
     key: "",
@@ -41,6 +42,7 @@ function WrapperForSearch() {
       .then((res) => {
         console.log("Res" + res.data.results[0].lat);
         setCoordinates({
+          cityName: res.data.results[0].city,
           lat: res.data.results[0].lat,
           lon: res.data.results[0].lon,
           key: res.data.results[0].place_id,
