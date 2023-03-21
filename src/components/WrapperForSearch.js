@@ -102,6 +102,8 @@ function WrapperForSearch() {
     event.preventDefault();
     setCategorySearchValue(categoryValue);
     setCategoryValue("");
+    setCityValue("");
+    setCountryValue("");
     setSearching(true);
   };
 

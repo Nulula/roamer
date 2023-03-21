@@ -67,31 +67,42 @@ function Geolocation() {
 
   if (!latitude) {
     return (
-      <div className="text-center">
-        <p>Looking for something nearby? Click the button below to search your current location.</p>
-        <button type="submit" className="btn btn-primary" id="nearMeButton" onClick={handleClick}>Find me</button>
-        <br /><br />
-        <p>(Make sure to click 'allow' when the browser asks to use your location)</p>
+      <div className="find-me-container">
+        <div className="text-center">
+          <p>Looking for something nearby? Click the button below to search your current location.</p>
+          <button type="submit" className="btn btn-primary" id="nearMeButton" onClick={handleClick}>Find me</button>
+          <br /><br />
+          <p>(Make sure to click 'allow' when the browser asks to use your location)</p>
+        </div>
       </div>
     );
   } else {
     return (
-      <div>
-        <SearchCategories
-          categoryValue={categoryValue}
-          handleCategoryChange={handleCategoryChange}
-          handleCategorySubmit={handleCategorySubmit}
-        />
-        <PlacesInfo data={categoryResponse} />
-  
+      <div className="row">
+      <h1 className="page-title">Currently Roaming: {!coordinates.key ? "London" : coordinates.cityName}</h1>
+      <div className="col-lg-8">
         <Map
           lat={latitude}
           lon={longitude}
           key={[latitude, longitude]}
           categoryResponse={categoryResponse}
         />
+      </div>
+      <div className="col-lg-4 side-panel">
+        <div className="category-search">
+          <h3>What do you want to do?</h3>
+            <SearchCategories 
+              categoryValue={categoryValue}
+              handleCategoryChange={handleCategoryChange}
+              handleCategorySubmit={handleCategorySubmit}
+            />
+        </div>
+        <div className="places-list-container">
+          <PlacesInfo data={categoryResponse} />
+        </div>
         <Weather lat={latitude} lon={longitude} />
       </div>
+    </div>
     );
   }
 }

@@ -73,7 +73,7 @@ h1, h2, h3 {
   margin: 20px;
   padding: 40px;
   border-radius: 25px;
-  background-color: rgba(255, 255, 255, 0.6);
+  background-color: rgba(255, 255, 255, 0.7);
 }
 
 .home-search-form img {
@@ -102,8 +102,12 @@ h1, h2, h3 {
   list-style: none;
 }
 
-.city-search, .category-search, .places-list-container, .card {
-  background-color: rgba(255, 255, 255, 0.6);
+.city-search, 
+.category-search, 
+.places-list-container, 
+.card,
+.find-me-container {
+  background-color: rgba(255, 255, 255, 0.7);
   padding: 5px;
   margin-bottom: 5px;
   border-radius: 20px;
