@@ -17,7 +17,9 @@ function PlacesInfo({ data }) {
   // if user is not loged in he cant save to local storage
   const handleSave = (event) => {
     const sessionData = sessionStorage.getItem("userData");
-    if (!sessionData) {
+    let values = JSON.parse(sessionData);
+    console.log(values);
+    if (values.name === "") {
       toast.error("Please log in first to save the place.");
       return;
     }
