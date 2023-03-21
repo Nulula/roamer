@@ -112,6 +112,12 @@ h1, h2, h3 {
   border-radius: 20px;
 }
 
+.row {
+  margin: 1px;
+}
+
+
+/* Near Me Page */
 .find-me-container {
   display: flex;
   flex-direction: column;
@@ -126,13 +132,8 @@ h1, h2, h3 {
   background-color: rgba(108, 117, 125, 0.9);
 }
 
-.row {
-  margin: 1px;
-}
-
 
 /* Contact Page */
-
 .feedback {
   display: flex;
   justify-content: center;
@@ -149,3 +150,6 @@ h1, h2, h3 {
   padding: 40px;
   border-radius: 25px;
 }
+
+
+/* Profile page */

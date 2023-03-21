@@ -28,10 +28,10 @@ function Geolocation() {
     const newStartP = `${longitude},${latitude}`;
     setStartP(newStartP);
 
-    axios.get("https://api.geoapify.com/v1/geocode/reverse?lat=" + latitude + "&lon=" + longitude + "&type=city&format=json&apiKey=8f4690110c99450d8e8c77713b77c534")
+    GeoApi.searchCityName(latitude, longitude)
     .then((res) => {
       console.log(res);
-      setLocationName([res.data.results[0].city, res.data.results[0].country])
+      setLocationName([res.data.features[0].properties.city, res.data.features[0].properties.country])
     });
 
   }, [latitude, longitude]);
