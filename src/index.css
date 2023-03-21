@@ -12,7 +12,120 @@ code {
     monospace;
 }
 
+
+/* All form buttons and inputs */
+.form-group .btn {
+  margin: 10px 0px;
+}
+
+
+/* All headings */
+h1, h2, h3 {
+  margin-left: 5px;
+}
+
+
+
+/* Navbar */
+.logo-date-container {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.navbar {
+  flex-wrap: wrap;
+}
+
+.navbar-nav {
+  flex-direction: row;
+  gap: 25px;
+}
+
+.time-date {
+  margin-right: 20px;
+}
+
+
+/* Leaflet Map */
 .leaflet-container {
-  width: 80%;
+  width: 100%;
   height: 80vh;
+  border-radius: 20px;
+}
+
+
+/* Footer */
+.footer {
+  width: 100%;
+}
+
+
+/* Home Page - City Search Form */
+.home-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.home-search-form {
+  margin: 20px;
+  padding: 40px;
+  border-radius: 25px;
+  background-color: rgba(255, 255, 255, 0.6);
+}
+
+.home-search-form img {
+  padding: 20px;
+}
+
+
+
+/* Home Page - Map & Weather View */
+.page-title {
+  margin-top: 10px;
+}
+
+.cardContainer {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.places-list-container {
+  overflow-y: scroll;
+  height: 150px;
+}
+
+
+.places-list-container ul {
+  list-style: none;
+}
+
+.city-search, .category-search, .places-list-container, .card {
+  background-color: rgba(255, 255, 255, 0.6);
+  padding: 5px;
+  margin-bottom: 5px;
+  border-radius: 20px;
+}
+
+.row {
+  margin: 1px;
+}
+
+
+/* Contact Page */
+
+.feedback {
+  display: flex;
+  justify-content: center;
+}
+
+.feedback-form {
+  width: 80%;
+  max-width: 800px;
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
 }

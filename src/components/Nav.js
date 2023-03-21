@@ -3,17 +3,6 @@ import moment from "moment";
 import { NavLink } from "react-router-dom";
 import logo from "../assets/Roamer_Logo.png";
 
-// Styles for the Nav component
-const styles = {
-  navBar: {
-    position: "relative",
-  },
-  navList: {
-    marginRight: "0",
-    marginLeft: "auto",
-  },
-};
-
 // Navigation component that displays links to different pages
 function Nav() {
   const [currentTime, setCurrentTime] = useState(
@@ -28,31 +17,25 @@ function Nav() {
   }, []);
 
   return (
-    <nav className="navbar navbar-expand-lg navbar-light bg-secondary">
-      <div style={styles.navBar} className="container-fluid">
-        <div>
-          <NavLink to="/">
-            <img
-              src={logo}
-              alt="Logo"
-              style={{ marginRight: "2px", width: "75px" }}
-            />
-          </NavLink>
+    <nav className="navbar navbar-light bg-secondary">
+      <div className="container-fluid">
+        <div className="logo-date-container">
+          <div>
+            <NavLink to="/">
+              <img
+                src={logo}
+                alt="Logo"
+                style={{ marginRight: "2px", width: "75px" }}
+              />
+            </NavLink>
+          </div>
+          <div className="container">
+            {currentTime}
+          </div>
         </div>
-        <div
-          className="container"
-          style={{
-            color: "white",
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-          }}
-        >
-          {currentTime}
-        </div>
-        <ul className="navbar-nav " style={styles.navList}>
+        <ul className="navbar-nav ">
           {/* Login page link */}
-          <li className="nav-item" style={{ marginRight: "10px" }}>
+          <li className="nav-item">
             <NavLink
               to="/"
               end
@@ -65,7 +48,7 @@ function Nav() {
           </li>
 
           {/* Near me page link */}
-          <li className="nav-item" style={{ marginRight: "10px" }}>
+          <li className="nav-item">
             <NavLink
               to="/nearme"
               end
@@ -77,7 +60,7 @@ function Nav() {
             </NavLink>
           </li>
           {/* Contact us page link */}
-          <li className="nav-item" style={{ marginRight: "10px" }}>
+          <li className="nav-item">
             <NavLink
               to="/contact"
               end
@@ -89,7 +72,7 @@ function Nav() {
             </NavLink>
           </li>
           {/* Profile page link */}
-          <li className="nav-item" style={{ marginRight: "10px" }}>
+          <li className="nav-item">
             <NavLink
               to="/profile"
               className={({ isActive }) =>
