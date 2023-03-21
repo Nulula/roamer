@@ -12,6 +12,11 @@ function PlacesInfo({ data }) {
     console.log(data);
   }, [data]);
 
+  const handleSave = (event) => {
+    const id = event.target.getAttribute("data-id");
+    const place = places[id];
+    localStorage.setItem(`place-${id}`, JSON.stringify(place));
+  };
   return (
     <div className="placesList">
       <ul>
@@ -30,6 +35,13 @@ function PlacesInfo({ data }) {
               >
                 {place.properties.datasource.raw.website}
               </a>
+              <button
+                className="btn btn-primary"
+                data-id={index}
+                onClick={handleSave}
+              >
+                Save
+              </button>
             </li>
           );
         })}
