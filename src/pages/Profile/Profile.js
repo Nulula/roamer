@@ -72,6 +72,25 @@ function Profile() {
     }
     setSavedPlaces(savedPlaces);
   }, []);
+  // removing li item from local storage
+  function handleRemove(event) {
+    const placeName = event.target.dataset.name;
+    console.log(placeName);
+    for (let i = 0; i < localStorage.length; i++) {
+      const key = localStorage.key(i);
+      if (key.startsWith("place-")) {
+        const place = JSON.parse(localStorage.getItem(key));
+        if (place.properties.address_line1 === placeName) {
+          localStorage.removeItem(key);
+          // Updateing the savedPlaces state to reflect the removal
+          setSavedPlaces(
+            savedPlaces.filter((p) => p.properties.address_line1 !== placeName)
+          );
+          break;
+        }
+      }
+    }
+  }
 
   return (
     <>
@@ -106,6 +125,14 @@ function Profile() {
                   >
                     {place.properties.datasource.raw.website}
                   </a>
+                  <br></br>
+                  <button
+                    className="btn btn-primary"
+                    data-name={place.properties.address_line1}
+                    onClick={handleRemove}
+                  >
+                    Remove
+                  </button>
                 </li>
               ))}
             </ul>
