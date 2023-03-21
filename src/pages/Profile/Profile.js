@@ -58,23 +58,59 @@ function Profile() {
     sessionStorage.removeItem("userData");
   }
 
+  // places from lovcal storage
+  const [savedPlaces, setSavedPlaces] = useState([]);
+
+  useEffect(() => {
+    const savedPlaces = [];
+    for (let i = 0; i < localStorage.length; i++) {
+      const key = localStorage.key(i);
+      if (key.startsWith("place-")) {
+        const place = JSON.parse(localStorage.getItem(key));
+        savedPlaces.push(place);
+      }
+    }
+    setSavedPlaces(savedPlaces);
+  }, []);
+
   return (
     <>
       {sessionData.signedIn ? (
         // Show the profile page if the user is signed in
-        <p style={styles}>
-          <div className="container mt-5">
-            Welcome to your profile page, {sessionData.name}! Here, you can find
-            all the places you saved during your previous trips.
+        <div>
+          <div style={styles}>
+            <div className="container mt-5">
+              Welcome to your profile page, {sessionData.name}! Here, you can
+              find all the places you saved during your previous trips.
+            </div>
+
+            <button
+              style={buttonStyle}
+              className="botton mt-5"
+              onClick={handleLogout}
+            >
+              Logout
+            </button>
           </div>
-          <button
-            style={buttonStyle}
-            className="botton mt-5"
-            onClick={handleLogout}
-          >
-            Logout
-          </button>
-        </p>
+          <div>
+            <ul>
+              {savedPlaces.map((place, index) => (
+                <li key={index}>
+                  <h3>{place.properties.address_line1}</h3>
+                  <p>{place.properties.address_line2}</p>
+                  <p>{place.properties.datasource.raw.phone}</p>
+                  <a
+                    href={place.properties.datasource.raw.website}
+                    rel="noreferrer"
+                    target="_blank"
+                  >
+                    {place.properties.datasource.raw.website}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
       ) : (
         // Show the login page if the user is not signed in
         <Login setSessionData={setSessionData} />
