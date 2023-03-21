@@ -69,10 +69,13 @@ function WrapperForSearch() {
     }
     GeoApi.searchPlace(categorySearchValue, startP)
       .then((res) => {
-        console.log(res);
+        // console.log(res);
         setCategoryResponse(res.data.features);
       })
-      .catch((error) => console.log(error));
+      .catch((error) => {
+        console.log(error);
+        toast.error("Pleas select category");
+      });
   }, [searching, startP, coordinates.key, categorySearchValue]);
 
   // Search form functions
