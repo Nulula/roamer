@@ -19,7 +19,10 @@ function PlacesInfo({ data }) {
     const sessionData = sessionStorage.getItem("userData");
     let values = JSON.parse(sessionData);
     console.log(values);
-    if (values.name === "") {
+    if (!sessionData) {
+      toast.error("Please log in first to save the place.");
+      return;
+    } else if (values.name === "") {
       toast.error("Please log in first to save the place.");
       return;
     }
