@@ -6,6 +6,7 @@ import SearchForm from "./SearchForm";
 import SearchCategories from "./SearchCategories";
 import PlacesInfo from "./PlacesInfo";
 import logo from "../assets/Roamer_Logo.png";
+import ShortestRoute from "./ShortestRoute";
 
 function WrapperForSearch() {
   // Setting states
@@ -27,6 +28,7 @@ function WrapperForSearch() {
   const [categoryResponse, setCategoryResponse] = useState();
   const [startPoint, setStartPoint] = useState("");
   const [finishPoint, setFinishPoint] = useState("");
+  const [shortestRouteRes,setShortestRouteRes] = useState("");
 
   // Function runs every time the search state changes
   useEffect(() => {
@@ -75,17 +77,13 @@ function WrapperForSearch() {
     if (!startPoint || !finishPoint) {
       return;
     }
-    console.log(startPoint);
     GeoApi.searchRoute(startPoint,finishPoint)
       .then((res) => {
-        console.log(res);
+        setShortestRouteRes(res.data.features);
+        console.log(shortestRouteRes);
       })
       .catch((error) => console.log(error));
-  },[startPoint,finishPoint])
-
-    useEffect(() => {
-        console.log("Start point updated:", startPoint);
-      },[startPoint]);
+  },[finishPoint])
 
   // Search form functions
   const handleCityChange = (event) => {
@@ -120,11 +118,12 @@ function WrapperForSearch() {
     //search parameters for the shortest route
     const handleStartPointChange = (newStartPoint) => {
       setStartPoint(newStartPoint);
-      console.log(startPoint)
+      console.log("Start point:"+startPoint)
     };
   
     const handleFinishPointChange = (newFinishPoint) => {
       setFinishPoint(newFinishPoint);
+      console.log("Finish point:"+finishPoint)
     };
 
   if (!coordinates.key) {
@@ -164,7 +163,8 @@ function WrapperForSearch() {
           key={coordinates.key}
           categoryResponse={categoryResponse}
           handleStartPointChange={handleStartPointChange}
-          handleFinishPointChange={handleFinishPointChange}      />
+          handleFinishPointChange={handleFinishPointChange}
+          shortestRouteRes={shortestRouteRes}      />
         <Weather lat={coordinates.lat} lon={coordinates.lon} />
       </div>
     );
