@@ -4,7 +4,7 @@
 
 Roamer is a user-friendly travel guide app that helps users explore the local area with ease. With its navigation feature, users can easily find and navigate to their desired destinations. It provides users with accurate and up-to-date information on local weather, restaurants, hotels, buses, and much more based on users needs and interest. To create the best experience and help users make plans, the app provides the possibility to save favorite places to profile page. Whether you're a tourist or a local, Roamer is the perfect travel companion for exploring new places and creating unforgettable memories.
 
-![demo]()
+![roamer]()
 
 ## Usage
 
@@ -22,9 +22,7 @@ The "Contact Us" page features a user feedback form, allowing individuals to sha
 
 ### Proile
 
-On the "Profile" page, users are given the option to register for an account. Once registered, users can log in and utilize a feature to save the places they have discovered while using the app. These saved places are stored in the local storage and can be viewed later on their personalized "Profile" page. Additionally, users have the ability to remove any unwanted saved places directly from their personalized "Profile" page.
-
----
+On the "Profile" page, users are given the option to register for an account. Once registered, users can log in and utilize a feature to save the places they have discovered while using the app. These saved places are stored in the local storage and can be viewed or removed later on their personalized "Profile" page. Additionally on "Profile" page users have the ability to upload up to five images.
 
 The deployed application can be found here:
 
