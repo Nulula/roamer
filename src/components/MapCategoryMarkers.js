@@ -1,16 +1,21 @@
-import React from "react";
+import React, { useState } from "react";
 import { Marker, Popup } from "react-leaflet";
 
-function MapCategoryMarkers({categoryResponse}) {
+function MapCategoryMarkers({categoryResponse,handleStartPointChange,handleFinishPointChange}) {
 
     return !categoryResponse ? null : (
         <>
         {categoryResponse.map((place, index) => (
             <Marker 
             key={`marker-${index}`} 
-            position={[place.geometry.coordinates[1], place.geometry.coordinates[0]]}>
+            position={[place.geometry.coordinates[1], place.geometry.coordinates[0]]}
+            >
                 <Popup>
                     <span>{index + 1}. {place.properties.name}</span><br />
+                    <button className="btn btn-primary" onClick={() => handleStartPointChange(`${place.geometry.coordinates[1]},${place.geometry.coordinates[0]}`)
+                    }>Start</button>
+                    <button className="btn btn-primary" onClick={() => handleFinishPointChange(`${place.geometry.coordinates[1]},${place.geometry.coordinates[0]}`)
+                    }>Finish</button>
                 </Popup>
             </Marker>
           ))}
