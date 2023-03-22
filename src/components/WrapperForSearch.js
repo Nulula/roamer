@@ -6,7 +6,6 @@ import SearchForm from "./SearchForm";
 import SearchCategories from "./SearchCategories";
 import PlacesInfo from "./PlacesInfo";
 import logo from "../assets/Roamer_Logo.png";
-import ShortestRoute from "./ShortestRoute";
 
 function WrapperForSearch() {
   // Setting states

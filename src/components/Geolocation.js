@@ -4,6 +4,7 @@ import Map from "./Map";
 import Weather from "./Weather";
 import SearchCategories from "./SearchCategories";
 import PlacesInfo from "./PlacesInfo";
+import WrapperForSearch from "../components/WrapperForSearch";
 
 function Geolocation() {
   // Setting states
@@ -14,6 +15,10 @@ function Geolocation() {
   const [startP, setStartP] = useState("");
   const [searching, setSearching] = useState(false);
   const [categoryResponse, setCategoryResponse] = useState();
+  const [startPoint, setStartPoint] = useState("");
+  const [finishPoint, setFinishPoint] = useState("");
+  const [shortestRouteRes,setShortestRouteRes] = useState("");
+  const [counter,setCounter] = useState(1);
 
   // Checks for coordinates and sets them as the start point
   useEffect(() => {
@@ -37,6 +42,28 @@ function Geolocation() {
       })
       .catch((error) => console.log(error));
   }, [searching, startP, latitude, categorySearchValue]);
+
+ //API call for the shortest route
+ useEffect(() => {
+  if (!startPoint || !finishPoint) {
+    return;
+  }
+  GeoApi.searchRoute(startPoint,finishPoint)
+    .then((res) => {
+      setShortestRouteRes(res.data.features);
+      setCounter(counter+1)
+    })
+    .catch((error) => console.log(error));
+},[startPoint,finishPoint])
+
+//search parameters for the shortest route
+const handleStartPointChange = (newStartPoint) => {
+  setStartPoint(newStartPoint);
+};
+
+const handleFinishPointChange = (newFinishPoint) => {
+  setFinishPoint(newFinishPoint);
+};
 
   // Function for the find me button
   const handleClick = () => {
@@ -89,6 +116,10 @@ function Geolocation() {
           lon={longitude}
           key={[latitude, longitude]}
           categoryResponse={categoryResponse}
+          handleStartPointChange={handleStartPointChange}
+          handleFinishPointChange={handleFinishPointChange}
+          shortestRouteRes={shortestRouteRes}
+          counter={counter}   
         />
         <Weather lat={latitude} lon={longitude} />
       </div>
