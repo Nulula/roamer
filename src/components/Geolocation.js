@@ -6,8 +6,6 @@ import SearchCategories from "./SearchCategories";
 import PlacesInfo from "./PlacesInfo";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import axios from "axios";
-import WrapperForSearch from "./WrapperForSearch";
 
 function Geolocation() {
   // Setting states
@@ -68,7 +66,7 @@ function Geolocation() {
       setCounter(counter+1)
     })
     .catch((error) => console.log(error));
-},[startPoint,finishPoint])
+},[startPoint, finishPoint, counter])
 
 //search parameters for the shortest route
 const handleStartPointChange = (newStartPoint) => {

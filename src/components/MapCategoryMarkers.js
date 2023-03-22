@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { Marker, Popup } from "react-leaflet";
 
 function MapCategoryMarkers({categoryResponse,handleStartPointChange,handleFinishPointChange}) {
