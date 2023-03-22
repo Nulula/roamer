@@ -91,6 +91,26 @@ function Profile() {
     }
   }
 
+  const [uploadedImage, setUploadedImage] = useState(
+    localStorage.getItem("image")
+  );
+
+  const handleImageUpload = (e) => {
+    const file = e.target.files[0];
+    fileToDataUrl(file, (dataUrl) => {
+      localStorage.setItem("image", dataUrl);
+      setUploadedImage(dataUrl);
+    });
+  };
+
+  function fileToDataUrl(file, callback) {
+    const reader = new FileReader();
+    reader.onload = function (event) {
+      callback(event.target.result);
+    };
+    reader.readAsDataURL(file);
+  }
+
   return (
     <>
       {sessionData.signedIn ? (
@@ -109,6 +129,11 @@ function Profile() {
             >
               Logout
             </button>
+          </div>
+
+          <div>
+            {uploadedImage && <img src={uploadedImage} alt="uploaded" />}
+            <input type="file" onChange={handleImageUpload} />
           </div>
           <div>
             <ul>
