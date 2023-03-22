@@ -17,6 +17,15 @@ code {
 }
 
 
+/* All a tags */
+a {
+  color: rgb(171, 216, 171);
+}
+
+a:hover {
+  color: #fff;
+}
+
 /* All form buttons and inputs */
 .form-group .btn {
   margin: 10px 0px;
@@ -66,6 +75,7 @@ h1, h2, h3 {
 
 .navbar {
   flex-wrap: wrap;
+  background-color: transparent;
 }
 
 .navbar-nav {
@@ -75,6 +85,10 @@ h1, h2, h3 {
 
 .time-date {
   margin-right: 20px;
+}
+
+.nav-link:hover {
+  text-decoration: underline;
 }
 
 
@@ -190,10 +204,8 @@ h1, h2, h3 {
 
 .register-container {
   background-color: rgba(53, 50, 46, 0.7);
-  padding: 5px;
-  margin-bottom: 5px;
   border-radius: 20px;
-  max-width: 80%;
+  padding: 10px;
 }
 
 .profile-text {

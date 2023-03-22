@@ -31,7 +31,7 @@ function Nav() {
   }, []);
 
   return (
-    <nav className="navbar navbar-expand-lg navbar-light bg-secondary">
+    <nav className="navbar navbar-expand-lg">
       <div style={styles.navBar} className="container-fluid">
         <div className="d-flex align-items-center">
           <NavLink to="/">

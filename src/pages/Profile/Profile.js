@@ -109,7 +109,7 @@ function Profile() {
       {sessionData.signedIn ? (
         // Show the profile page if the user is signed in
         <div className="profile-container container mt-5" style={styles}>
-          <div className="profile-text text-center">
+          <div className="profile-text text-center mb-5">
             <p>
               Welcome to your profile page, {sessionData.name}! Here, you can
               find all the places you saved during your previous trips.
@@ -126,16 +126,16 @@ function Profile() {
             {uploadedImage && <img src={uploadedImage} alt="uploaded" />}
 
             <input
-              className="botton"
+              className="button"
               type="file"
               onChange={handleImageUpload}
             />
 
-            <button className="botton" onClick={removeFile}>
+            <button className="button" onClick={removeFile}>
               Remove File
             </button>
           </div>
-          <div>
+          <div className="saved-container">
             <ul>
               {savedPlaces.map((place, index) => (
                 <li className="saved-place" key={index}>
