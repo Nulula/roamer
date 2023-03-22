@@ -139,7 +139,7 @@ h1, h2, h3 {
 
 .places-list-container {
   overflow-y: scroll;
-  height: 150px;
+  height: 24vh;
 }
 
 .places-list-container ul {
@@ -151,7 +151,7 @@ h1, h2, h3 {
 .places-list-container, 
 .card {
   background-color: rgba(53, 50, 46, 0.7);
-  padding: 5px;
+  padding: 8px;
   margin-bottom: 5px;
   border-radius: 20px;
 }
@@ -227,3 +227,32 @@ h1, h2, h3 {
   padding: 0;
   margin: 0;
 }
+
+.card {
+  width: 400px;
+  height: 275px;
+}
+
+.saved-images {
+  flex-wrap: wrap;
+  background-color: transparent;
+  justify-content: center;
+}
+
+.btn-remove {
+  color: whitesmoke;
+  background-color: rgb(94, 104, 94) !important;
+  border-radius: 6px;
+}
+
+
+.weather-text {
+  background-color: rgba(53, 50, 46, 0.7);
+  padding: 5px 20px 0 30px;
+  margin-bottom: 5px;
+  border-radius: 20px;
+  width: 18.5rem;
+  margin: 5px;
+}
+
+

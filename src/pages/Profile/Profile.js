@@ -8,7 +8,6 @@ const styles = {
   fontStyle: "italic",
 };
 
-
 // Define the Profile component
 function Profile() {
   // Use local storage to store user data
@@ -113,29 +112,44 @@ function Profile() {
         <div className="profile-container container mt-5" style={styles}>
           <div className="profile-text text-center mb-5">
             <p>
-              Welcome to your profile page, {sessionData.name}! Here, you can
-              find all the places you saved during your previous trips.
+              Welcome to Roamer, {sessionData.name}! We are excited to have you
+              here and to help you create your very own Roamer story.{" "}
+            </p>{" "}
+            <p>
+              With Roamer, you have the ability to upload images from the places
+              you have visited, and save the places that you love. Plus, if you
+              ever get bored of your story, you can easily remove parts of it
+              and add new ones. So go ahead and explore the world, capture your
+              experiences through images, and create a unique and personalized
+              Roamer story that you can cherish for years to come.
             </p>
             <button
-              className="btn btn-primary"
+              className="btn btn-remove btn-logout"
               onClick={handleLogout}
             >
               Logout
             </button>
           </div>
 
-          <div>
-            {uploadedImages.slice(0, 5).map((image, index) => (
+          <div className="saved-images navbar-nav m-3">
+            {uploadedImages.slice(0, 6).map((image, index) => (
               <div key={index}>
-                <img src={image} alt={`uploaded ${index}`} />
-                <button className="button" onClick={() => removeFile(index)}>
+                <img
+                  className="card cardContainer"
+                  src={image}
+                  alt={`uploaded ${index}`}
+                />
+                <button
+                  className="btn btn-remove"
+                  onClick={() => removeFile(index)}
+                >
                   Remove File
                 </button>
               </div>
             ))}
-            {uploadedImages.length < 5 && (
+            {uploadedImages.length < 6 && (
               <input
-                className="button"
+                className="card"
                 type="file"
                 onChange={handleImageUpload}
               />
@@ -157,7 +171,7 @@ function Profile() {
                   </a>
                   <br></br>
                   <button
-                    className="btn btn-primary"
+                    className="btn btn-remove"
                     data-name={place.properties.address_line1}
                     onClick={handleRemove}
                   >
