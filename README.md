@@ -22,9 +22,9 @@ The "Contact Us" page features a user feedback form, allowing individuals to sha
 
 ### Proile
 
-On the "Profile" page, users are given the option to register for an account. Once registered, users can log in and utilize a feature to save the places they have discovered while using the app. These saved places are stored in the local storage and can be viewed or removed later from personalized "Profile" page. Additionally, on the "Profile" page users can upload up to five personal images.
+On the "Profile" page, users are given the option to register for an account. Once registered, users can log in and utilize a feature to save the places they have discovered while using the app. These saved places are stored in the local storage and can be viewed or removed later from personalized "Profile" page. Additionally, on the "Profile" page users can upload up to six personal images.
 
-The deployed application can be found here:
+The deployed application can be found here: https://roamer.netlify.app/
 
 ## Collaborators
 
@@ -39,6 +39,11 @@ The deployed application can be found here:
 - NodeJS
 - JavaScript
 - Bootstrap
+- React-router-dom
+- React-toastify
+- Emailjs
+- Moment
+- Axios
 
 ## API’s Third Party:
 
