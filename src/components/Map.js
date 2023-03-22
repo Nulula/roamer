@@ -1,5 +1,5 @@
 import React from "react";
-import L, { MapContainer, TileLayer } from 'react-leaflet';
+import { MapContainer, TileLayer } from 'react-leaflet';
 import MapCategoryMarkers from "./MapCategoryMarkers";
 import ShortestRoute from './ShortestRoute';
 

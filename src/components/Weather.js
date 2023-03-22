@@ -29,10 +29,6 @@ function Weather(props) {
   });
 
   useEffect(() => {
-    if (!lat || !lon) {
-      lat = 51.509865;
-      lon = -0.118092;
-    }
 
     // API call to get crrent weather
     WeatherApi.searchWeather(lat, lon)

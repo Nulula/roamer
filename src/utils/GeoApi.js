@@ -32,6 +32,7 @@ const placesCall4 = "&limit=20";
 
 // &bias=proximity:
 
+//eslint-disable-next-line
 export default {
     searchMap: function(city, country) {
         return axios.get(BASEURL + mapCall1 + city + mapCall2 + country + mapCall3 + APIKEY)
