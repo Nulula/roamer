@@ -35,4 +35,15 @@ The deployed application can be found here:
 - [Desislava Ivanova](https://github.com/DessySI)
 - [Marta Perlinska](https://github.com/Nulula)
 
-## Technologies Used
+## Technologies Used:
+
+- ReactJS
+- NodeJS
+- JavaScript
+- Bootstrap
+
+## API’s Third Party:
+
+- Leaflet
+- Geoapify
+- Weather
