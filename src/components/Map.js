@@ -3,7 +3,7 @@ import L, { MapContainer, TileLayer } from 'react-leaflet';
 import MapCategoryMarkers from "./MapCategoryMarkers";
 import ShortestRoute from './ShortestRoute';
 
-function Map({lat, lon, categoryResponse,handleStartPointChange,handleFinishPointChange,shortestRouteRes}) {
+function Map({lat, lon, categoryResponse,handleStartPointChange,handleFinishPointChange,shortestRouteRes,counter}) {
 
     
     return (
@@ -20,6 +20,7 @@ function Map({lat, lon, categoryResponse,handleStartPointChange,handleFinishPoin
                 handleFinishPointChange={handleFinishPointChange} />
                 <ShortestRoute
                 shortestRouteRes={shortestRouteRes}
+                counter={counter}
                 />
             
             </MapContainer>

@@ -7,10 +7,10 @@ const lineStyle = {
     "opacity": 0.5
 };
 
-function ShortestRoute({shortestRouteRes}) {
+function ShortestRoute({shortestRouteRes,counter}) {
     return !shortestRouteRes ? null: (
     <>
-        <GeoJSON data={shortestRouteRes} style={lineStyle}/>
+        <GeoJSON key={counter} data={shortestRouteRes} style={lineStyle}/>
     </>
     )
 };
