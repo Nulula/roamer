@@ -9,9 +9,6 @@ function LoginModal() {
   // Define styles for the login modal
   const styles = {
     margin: "5% 20% ",
-    padding: "10px",
-    borderRadius: "25px",
-    backgroundColor: "rgba(108, 117, 125, 0.9)",
     height: "20%",
     width: "60%",
     display: "flex",
@@ -140,7 +137,7 @@ function LoginModal() {
       {showModal && (
         <div className="modal">
           <div className="modal-content">
-            <ul style={{ listStyle: "none" }}>
+            <ul>
               <form onSubmit={handleSubmit}>
                 <li>
                   <input
@@ -244,21 +241,21 @@ function LoginModal() {
       )}
       {!showModal && (
         <div style={styles}>
-          <div className="container m-4">
+          <div className="register-container container m-4">
             {userData.signedIn ? (
               window.location.replace("/profile") // Redirect to the profile page
             ) : (
               <>
-                <span>
+                <p>
                   Welcome! To access your profile page, please register and
                   login. Registering is quick and easy, and it allows you to
                   take advantage of all the features our website has to offer.
                   Once you're logged in, you'll be able to view your profile
                   page and update your information at any time. Thank you for
                   choosing our website!
-                </span>
+                </p>
                 <button
-                  className="btn btn-success rounded-start"
+                  className="btn btn-primary"
                   onClick={handleRegister}
                 >
                   Sign In

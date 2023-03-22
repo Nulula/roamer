@@ -95,7 +95,7 @@ function WrapperForSearch() {
         setCounter(counter+1)
       })
       .catch((error) => console.log(error));
-  },[startPoint,finishPoint])
+  },[startPoint, finishPoint, counter])
 
   // Search form functions
   const handleCityChange = (event) => {
@@ -112,6 +112,8 @@ function WrapperForSearch() {
       city: cityValue,
       country: countryValue,
     });
+    setCityValue("");
+    setCountryValue("");
     setSearching(false);
   };
 
@@ -124,8 +126,6 @@ function WrapperForSearch() {
     event.preventDefault();
     setCategorySearchValue(categoryValue);
     setCategoryValue("");
-    setCityValue("");
-    setCountryValue("");
     setSearching(true);
   };
 
@@ -190,6 +190,7 @@ function WrapperForSearch() {
               />
           </div>
           <div className="places-list-container">
+          <h3>Found places:</h3>
             <PlacesInfo data={categoryResponse} />
           </div>
           <Weather lat={coordinates.lat} lon={coordinates.lon} />

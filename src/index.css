@@ -6,6 +6,9 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   color: #fff;
+  background-image: url("./assets/brownmap-bg.jpg");
+  background-position: center;
+  background-attachment: fixed;
 }
 
 code {
@@ -14,9 +17,30 @@ code {
 }
 
 
+/* All a tags */
+a {
+  color: rgb(171, 216, 171);
+}
+
+a:hover {
+  color: #fff;
+}
+
 /* All form buttons and inputs */
 .form-group .btn {
   margin: 10px 0px;
+}
+
+.form-select:active, .form-select:focus {
+  border-color: none !important;
+  box-shadow: none;
+  outline: 0 none;
+}
+
+.form-control:active, .form-control:focus {
+  border-color: none !important;
+  box-shadow: none;
+  outline: 0 none;
 }
 
 
@@ -25,6 +49,21 @@ h1, h2, h3 {
   margin-left: 5px;
 }
 
+
+/* All primary buttons */
+.btn-primary, .btn-primary:visited {
+  color: #fff;
+  background-color: green !important;
+  border-color: green !important;
+}
+
+.btn-primary:hover {
+  background-color: rgb(0, 118, 0) !important;
+}
+
+.btn-primary:active {
+  background-color: green !important;
+}
 
 
 /* Navbar */
@@ -36,6 +75,7 @@ h1, h2, h3 {
 
 .navbar {
   flex-wrap: wrap;
+  background-color: transparent;
 }
 
 .navbar-nav {
@@ -45,6 +85,10 @@ h1, h2, h3 {
 
 .time-date {
   margin-right: 20px;
+}
+
+.nav-link:hover {
+  text-decoration: underline;
 }
 
 
@@ -74,7 +118,7 @@ h1, h2, h3 {
   margin: 20px;
   padding: 40px;
   border-radius: 25px;
-  background-color: rgba(108, 117, 125, 0.9);
+  background-color: rgba(53, 50, 46, 0.7);
 }
 
 .home-search-form img {
@@ -106,7 +150,7 @@ h1, h2, h3 {
 .category-search, 
 .places-list-container, 
 .card {
-  background-color: rgba(108, 117, 125, 0.9);
+  background-color: rgba(53, 50, 46, 0.7);
   padding: 5px;
   margin-bottom: 5px;
   border-radius: 20px;
@@ -129,7 +173,7 @@ h1, h2, h3 {
   margin: 20px;
   padding: 40px;
   border-radius: 25px;
-  background-color: rgba(108, 117, 125, 0.9);
+  background-color: rgba(53, 50, 46, 0.7);
 }
 
 
@@ -145,11 +189,41 @@ h1, h2, h3 {
   display: flex;
   flex-direction: column;
   gap: 20px;
-  background-color: rgba(108, 117, 125, 0.9);
+  background-color: rgba(53, 50, 46, 0.7);
   margin: 20px;
   padding: 40px;
   border-radius: 25px;
 }
 
+.feedback-btn {
+  width: fit-content;
+}
+
 
 /* Profile page */
+
+.register-container {
+  background-color: rgba(53, 50, 46, 0.7);
+  border-radius: 20px;
+  padding: 10px;
+}
+
+.profile-text {
+  background-color: rgba(53, 50, 46, 0.7);
+  padding: 5px;
+  margin-bottom: 5px;
+  border-radius: 20px;
+}
+
+.saved-place {
+  background-color: rgba(53, 50, 46, 0.7);
+  padding: 5px;
+  margin-bottom: 5px;
+  border-radius: 20px;
+}
+
+.saved-container ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
