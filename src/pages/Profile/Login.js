@@ -170,7 +170,7 @@ function LoginModal() {
                     />
                   </li>
                 )}
-                <button className="btn btn-success rounded-start" type="submit">
+                <button className="btn btn-primary" type="submit">
                   {formType === "signIn" ? "Sign In" : "Log In"}
                 </button>
               </form>

@@ -68,9 +68,9 @@ function Weather(props) {
   }, [lat, lon]);
 
   return (
-    <div className="cardContainer">
-      <div className="card" style={{ width: "18.5rem" }}>
-        <div className="card-body pt-1">
+    <div>
+      <div className="cardContainer">
+        <div className="weather-text">
           <h6>Weather in {weather.cityName}</h6>
           <img src={weather.urlIcon} alt={weather.clouds}></img>
           <p>
@@ -88,9 +88,7 @@ function Weather(props) {
             </small>
           </p>
         </div>
-      </div>
-      <div className="card" style={{ width: "18.5rem" }}>
-        <div className="card-body pt-1">
+        <div className="weather-text">
           <h6>Weather in {weather.cityName} in 3 hours</h6>
           <img src={futureWeather.urlIcon} alt={futureWeather.clouds}></img>
           <p>
