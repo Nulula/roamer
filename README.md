@@ -10,11 +10,11 @@ Roamer is a user-friendly travel guide app that helps users explore the local ar
 
 ### Home Page
 
-On the Home page, users are presented with a user-friendly form that enables them to input the name of their desired city they wish to explore. Users must select the country to make the search more accurate. Upon submission of the form, the user is presented with an interactive map displaying the selected location, as well as current weather information. Additionally, users can browse for places of interest by selecting from a variety of pre-defined categories.
+On the Home page, users are presented with a user-friendly form that enables them to input the name of their desired city they wish to explore. Users must select the country to make the search more accurate. Upon submission of the form, the user is presented with an interactive map displaying the selected location, as well as current weather information. Additionally, users can browse for places of interest by selecting from a variety of pre-defined categories. Once the places markers are displayed on the map the user can find the shortest route from one place to another by selecting starting and finishing ponits on the map.
 
 ### Near Me
 
-The "Near Me" page offers a "Find Me" button that allows users to access their current location map and weather information. Furthermore, users can explore places of interest by selecting from a diverse range of pre-defined categories.
+The "Near Me" page offers a "Find Me" button that allows users to access their current location map and weather information. Furthermore, users can explore places of interest by selecting from a diverse range of pre-defined categories. Once the places markers are displayed on the map the user can find the shortest route from one place to another by selecting starting and finishing ponits on the map.
 
 ### Contact Us
 
