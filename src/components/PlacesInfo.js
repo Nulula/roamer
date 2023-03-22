@@ -25,6 +25,9 @@ function PlacesInfo({ data }) {
     } else if (values.name === "") {
       toast.error("Please log in first to save the place.");
       return;
+    } else if (values.signedIn === false) {
+      toast.error("Please log in first to save the place.");
+      return;
     }
     const id = event.target.getAttribute("data-id");
     const place = places[id];
