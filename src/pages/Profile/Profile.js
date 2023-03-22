@@ -91,15 +91,16 @@ function Profile() {
     }
   }
 
-  const [uploadedImage, setUploadedImage] = useState(
-    localStorage.getItem("image")
+  const [uploadedImages, setUploadedImages] = useState(
+    JSON.parse(localStorage.getItem("images")) || []
   );
 
   const handleImageUpload = (e) => {
     const file = e.target.files[0];
     fileToDataUrl(file, (dataUrl) => {
-      localStorage.setItem("image", dataUrl);
-      setUploadedImage(dataUrl);
+      const newImages = [...uploadedImages, dataUrl];
+      localStorage.setItem("images", JSON.stringify(newImages));
+      setUploadedImages(newImages);
     });
   };
 
@@ -111,9 +112,10 @@ function Profile() {
     reader.readAsDataURL(file);
   }
 
-  function removeFile() {
-    localStorage.setItem("image", "");
-    setUploadedImage("");
+  function removeFile(index) {
+    const newImages = uploadedImages.filter((_, i) => i !== index);
+    localStorage.setItem("images", JSON.stringify(newImages));
+    setUploadedImages(newImages);
   }
 
   return (
@@ -137,17 +139,21 @@ function Profile() {
           </div>
 
           <div>
-            {uploadedImage && <img src={uploadedImage} alt="uploaded" />}
-
-            <input
-              className="botton"
-              type="file"
-              onChange={handleImageUpload}
-            />
-
-            <button className="botton" onClick={removeFile}>
-              Remove File
-            </button>
+            {uploadedImages.slice(0, 5).map((image, index) => (
+              <div key={index}>
+                <img src={image} alt={`uploaded ${index}`} />
+                <button className="botton" onClick={() => removeFile(index)}>
+                  Remove File
+                </button>
+              </div>
+            ))}
+            {uploadedImages.length < 5 && (
+              <input
+                className="botton"
+                type="file"
+                onChange={handleImageUpload}
+              />
+            )}
           </div>
           <div>
             <ul>
