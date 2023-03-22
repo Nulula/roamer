@@ -3,17 +3,21 @@ import "./LoginModal.css";
 import { useSessionStorage } from "./SessionStorage";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import bgImage from "./assets/backgroundImg.jpg";
 
 // This function creates a login modal component
 function LoginModal() {
   // Define styles for the login modal
   const styles = {
-    backgroundImage: `url(${bgImage})`,
-    backgroundSize: "cover",
-    height: "88vh",
+    margin: "5% 20% ",
+    padding: "10px",
+    borderRadius: "25px",
+    backgroundColor: "rgba(108, 117, 125, 0.9)",
+    height: "20%",
+    width: "60%",
     display: "flex",
-    fontStyle: "italic",
+    flexDirection: "column",
+    justifyContent: "center",
+    alignItems: "center",
   };
 
   // Use the useLocalStorage hook to store and retrieve user data
@@ -203,7 +207,12 @@ function LoginModal() {
                 </>
               ) : (
                 <div>
-                  <p onClick={handleRegister}>
+                  <p
+                    style={{
+                      color: "grey",
+                    }}
+                    onClick={handleRegister}
+                  >
                     If you don't have an account, follow the link to{" "}
                     <span
                       style={{
@@ -233,8 +242,8 @@ function LoginModal() {
         </div>
       )}
       {!showModal && (
-        <h5 style={styles}>
-          <div className="container mt-5">
+        <div style={styles}>
+          <div className="container m-4">
             {userData.signedIn ? (
               window.location.replace("/profile") // Redirect to the profile page
             ) : (
@@ -256,7 +265,7 @@ function LoginModal() {
               </>
             )}
           </div>
-        </h5>
+        </div>
       )}
     </>
   );

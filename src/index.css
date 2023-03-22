@@ -139,7 +139,7 @@ h1, h2, h3 {
   justify-content: center;
 }
 
-.feedback-form {
+.feedback-form  {
   width: 80%;
   max-width: 800px;
   display: flex;
