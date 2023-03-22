@@ -28,6 +28,10 @@ function WrapperForSearch() {
   const [startP, setStartP] = useState("");
   const [searching, setSearching] = useState(false);
   const [categoryResponse, setCategoryResponse] = useState();
+  const [startPoint, setStartPoint] = useState("");
+  const [finishPoint, setFinishPoint] = useState("");
+  const [shortestRouteRes,setShortestRouteRes] = useState("");
+  const [counter,setCounter] = useState(1);
 
   // Function runs every time the search state changes
   useEffect(() => {
@@ -76,9 +80,22 @@ function WrapperForSearch() {
       })
       .catch((error) => {
         console.log(error);
-        toast.error("Pleas select category");
+        toast.error("Please select category");
       });
   }, [searching, startP, coordinates.key, categorySearchValue]);
+
+  //API call for the shortest route
+  useEffect(() => {
+    if (!startPoint || !finishPoint) {
+      return;
+    }
+    GeoApi.searchRoute(startPoint,finishPoint)
+      .then((res) => {
+        setShortestRouteRes(res.data.features);
+        setCounter(counter+1)
+      })
+      .catch((error) => console.log(error));
+  },[startPoint,finishPoint])
 
   // Search form functions
   const handleCityChange = (event) => {
@@ -112,6 +129,15 @@ function WrapperForSearch() {
     setSearching(true);
   };
 
+    //search parameters for the shortest route
+    const handleStartPointChange = (newStartPoint) => {
+      setStartPoint(newStartPoint);
+    };
+  
+    const handleFinishPointChange = (newFinishPoint) => {
+      setFinishPoint(newFinishPoint);
+    };
+
   if (!coordinates.key) {
     return (
       <div className="home-container">
@@ -137,7 +163,11 @@ function WrapperForSearch() {
             lat={coordinates.lat} 
             lon={coordinates.lon} 
             key={coordinates.key} 
-            categoryResponse={categoryResponse} 
+            categoryResponse={categoryResponse}
+            handleStartPointChange={handleStartPointChange}
+            handleFinishPointChange={handleFinishPointChange}
+            shortestRouteRes={shortestRouteRes}
+            counter={counter} 
           />
         </div>
         <div className="col-lg-4 side-panel">

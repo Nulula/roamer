@@ -3,6 +3,21 @@ import moment from "moment";
 import { NavLink } from "react-router-dom";
 import logo from "../assets/Roamer_Logo.png";
 
+// Styles for the Nav component
+const styles = {
+  navBar: {
+    color: "white",
+    position: "relative",
+  },
+  navList: {
+    marginRight: "0",
+  },
+  navLink: {
+    color: "white",
+  },
+};
+
+// Navigation component that displays links to different pages
 function Nav() {
   const [currentTime, setCurrentTime] = useState(
     moment().format("MMMM Do YYYY, h:mm a")
@@ -17,7 +32,7 @@ function Nav() {
 
   return (
     <nav className="navbar navbar-expand-lg navbar-light bg-secondary">
-      <div className="container-fluid">
+      <div style={styles.navBar} className="container-fluid">
         <div className="d-flex align-items-center">
           <NavLink to="/">
             <img
@@ -36,6 +51,7 @@ function Nav() {
           aria-controls="navbarNav"
           aria-expanded="false"
           aria-label="Toggle navigation"
+          style={{ borderColor: "white" }}
         >
           <span className="navbar-toggler-icon"></span>
         </button>
@@ -48,6 +64,7 @@ function Nav() {
                 className={({ isActive }) =>
                   isActive ? "nav-link active" : "nav-link"
                 }
+                style={styles.navLink}
               >
                 Home
               </NavLink>
@@ -59,6 +76,7 @@ function Nav() {
                 className={({ isActive }) =>
                   isActive ? "nav-link active" : "nav-link"
                 }
+                style={styles.navLink}
               >
                 Near me
               </NavLink>
@@ -70,6 +88,7 @@ function Nav() {
                 className={({ isActive }) =>
                   isActive ? "nav-link active" : "nav-link"
                 }
+                style={styles.navLink}
               >
                 Contact us
               </NavLink>
@@ -80,6 +99,7 @@ function Nav() {
                 className={({ isActive }) =>
                   isActive ? "nav-link active" : "nav-link"
                 }
+                style={styles.navLink}
               >
                 Profile
               </NavLink>

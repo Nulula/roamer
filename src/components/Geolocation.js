@@ -7,6 +7,7 @@ import PlacesInfo from "./PlacesInfo";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import axios from "axios";
+import WrapperForSearch from "./WrapperForSearch";
 
 function Geolocation() {
   // Setting states
@@ -17,7 +18,11 @@ function Geolocation() {
   const [startP, setStartP] = useState("");
   const [searching, setSearching] = useState(false);
   const [categoryResponse, setCategoryResponse] = useState();
-  const [locationName, setLocationName] = useState([]);
+  const [startPoint, setStartPoint] = useState("");
+  const [finishPoint, setFinishPoint] = useState("");
+  const [shortestRouteRes,setShortestRouteRes] = useState("");
+  const [counter,setCounter] = useState(1);
+  const [locationName,setLocationName] = useState("");
 
   // Checks for coordinates and sets them as the start point
   useEffect(() => {
@@ -51,6 +56,28 @@ function Geolocation() {
         toast.error("Please select category");
       });
   }, [searching, startP, latitude, categorySearchValue]);
+
+ //API call for the shortest route
+ useEffect(() => {
+  if (!startPoint || !finishPoint) {
+    return;
+  }
+  GeoApi.searchRoute(startPoint,finishPoint)
+    .then((res) => {
+      setShortestRouteRes(res.data.features);
+      setCounter(counter+1)
+    })
+    .catch((error) => console.log(error));
+},[startPoint,finishPoint])
+
+//search parameters for the shortest route
+const handleStartPointChange = (newStartPoint) => {
+  setStartPoint(newStartPoint);
+};
+
+const handleFinishPointChange = (newFinishPoint) => {
+  setFinishPoint(newFinishPoint);
+};
 
   // Function for the find me button
   const handleClick = () => {
@@ -108,6 +135,10 @@ function Geolocation() {
           lon={longitude}
           key={[latitude, longitude]}
           categoryResponse={categoryResponse}
+          handleStartPointChange={handleStartPointChange}
+          handleFinishPointChange={handleFinishPointChange}
+          shortestRouteRes={shortestRouteRes}
+          counter={counter}   
         />
       </div>
       <div className="col-lg-4 side-panel">

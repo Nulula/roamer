@@ -79,6 +79,31 @@ function Profile() {
     }
   }
 
+  const [uploadedImage, setUploadedImage] = useState(
+    localStorage.getItem("image")
+  );
+
+  const handleImageUpload = (e) => {
+    const file = e.target.files[0];
+    fileToDataUrl(file, (dataUrl) => {
+      localStorage.setItem("image", dataUrl);
+      setUploadedImage(dataUrl);
+    });
+  };
+
+  function fileToDataUrl(file, callback) {
+    const reader = new FileReader();
+    reader.onload = function (event) {
+      callback(event.target.result);
+    };
+    reader.readAsDataURL(file);
+  }
+
+  function removeFile() {
+    localStorage.setItem("image", "");
+    setUploadedImage("");
+  }
+
   return (
     <>
       {sessionData.signedIn ? (
@@ -96,7 +121,21 @@ function Profile() {
               Logout
             </button>
           </div>
-          <div className="saved-container container mt-5">
+
+          <div>
+            {uploadedImage && <img src={uploadedImage} alt="uploaded" />}
+
+            <input
+              className="botton"
+              type="file"
+              onChange={handleImageUpload}
+            />
+
+            <button className="botton" onClick={removeFile}>
+              Remove File
+            </button>
+          </div>
+          <div>
             <ul>
               {savedPlaces.map((place, index) => (
                 <li className="saved-place" key={index}>

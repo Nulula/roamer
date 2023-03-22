@@ -8,8 +8,16 @@ import "react-toastify/dist/ReactToastify.css";
 function LoginModal() {
   // Define styles for the login modal
   const styles = {
+    margin: "5% 20% ",
+    padding: "10px",
+    borderRadius: "25px",
+    backgroundColor: "rgba(108, 117, 125, 0.9)",
+    height: "20%",
+    width: "60%",
     display: "flex",
-    fontStyle: "italic",
+    flexDirection: "column",
+    justifyContent: "center",
+    alignItems: "center",
   };
 
   // Use the useLocalStorage hook to store and retrieve user data
@@ -122,6 +130,7 @@ function LoginModal() {
   // This function is called when the user clicks the register button
   function handleRegister() {
     // Change the form type to "signIn" and show the modal
+
     setFormType("signIn");
     setShowModal(true);
   }
@@ -199,7 +208,12 @@ function LoginModal() {
                 </>
               ) : (
                 <div>
-                  <p onClick={handleRegister}>
+                  <p
+                    style={{
+                      color: "grey",
+                    }}
+                    onClick={handleRegister}
+                  >
                     If you don't have an account, follow the link to{" "}
                     <span
                       style={{
@@ -229,8 +243,8 @@ function LoginModal() {
         </div>
       )}
       {!showModal && (
-        <h5 style={styles}>
-          <div className="register-container container mt-5 text-center">
+        <div style={styles}>
+          <div className="container m-4">
             {userData.signedIn ? (
               window.location.replace("/profile") // Redirect to the profile page
             ) : (
@@ -252,7 +266,7 @@ function LoginModal() {
               </>
             )}
           </div>
-        </h5>
+        </div>
       )}
     </>
   );
