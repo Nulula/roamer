@@ -127,7 +127,7 @@ function LoginModal() {
   // This function is called when the user clicks the register button
   function handleRegister() {
     // Change the form type to "signIn" and show the modal
-
+    localStorage.clear();
     setFormType("signIn");
     setShowModal(true);
   }
@@ -254,10 +254,7 @@ function LoginModal() {
                   page and update your information at any time. Thank you for
                   choosing our website!
                 </p>
-                <button
-                  className="btn btn-primary"
-                  onClick={handleRegister}
-                >
+                <button className="btn btn-primary" onClick={handleRegister}>
                   Sign In
                 </button>
               </>

@@ -69,31 +69,44 @@ function Weather(props) {
 
   return (
     <div className="cardContainer">
-      <div className="card" style={{ width: "16rem" }}>
-        <div className="card-body">
-          <h4>Weather in {weather.cityName}</h4>
+      <div className="card" style={{ width: "18.5rem" }}>
+        <div className="card-body pt-1">
+          <h6>Weather in {weather.cityName}</h6>
           <img src={weather.urlIcon} alt={weather.clouds}></img>
           <p>
-            {weather.clouds.charAt(0).toUpperCase() + weather.clouds.slice(1)}
+            {" "}
+            <small>
+              {weather.clouds.charAt(0).toUpperCase() + weather.clouds.slice(1)}
+              <br />
+              Temperature {weather.temperatutre.toFixed(0)} C°
+              <br />
+              Feels Like {weather.feelsLike.toFixed(0)} C°
+              <br />
+              Wind Speed {weather.wind} m/s
+              <br />
+              Humidity {weather.humidity} %
+            </small>
           </p>
-          <p>Temperature {weather.temperatutre.toFixed(0)} C°</p>
-          <p>Feels Like {weather.feelsLike.toFixed(0)} C°</p>
-          <p>Wind Speed {weather.wind} m/s</p>
-          <p>Humidity {weather.humidity} %</p>
         </div>
       </div>
-      <div className="card" style={{ width: "16rem" }}>
-        <div className="card-body">
-          <h4>Weather in {futureWeather.cityName} in 3 hours</h4>
+      <div className="card" style={{ width: "18.5rem" }}>
+        <div className="card-body pt-1">
+          <h6>Weather in {weather.cityName} in 3 hours</h6>
           <img src={futureWeather.urlIcon} alt={futureWeather.clouds}></img>
           <p>
-            {futureWeather.clouds.charAt(0).toUpperCase() +
-              futureWeather.clouds.slice(1)}
+            <small>
+              {futureWeather.clouds.charAt(0).toUpperCase() +
+                futureWeather.clouds.slice(1)}
+              <br />
+              Temperature {futureWeather.temperatutre.toFixed(0)} C°
+              <br />
+              Feels Like {futureWeather.feelsLike.toFixed(0)} C°
+              <br />
+              Wind Speed {futureWeather.wind} m/s
+              <br />
+              Humidity {futureWeather.humidity} %
+            </small>
           </p>
-          <p>Temperature {futureWeather.temperatutre.toFixed(0)} C°</p>
-          <p>Feels Like {futureWeather.feelsLike.toFixed(0)} C°</p>
-          <p>Wind Speed {futureWeather.wind} m/s</p>
-          <p>Humidity {futureWeather.humidity} %</p>
         </div>
       </div>
     </div>
