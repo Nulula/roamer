@@ -56,7 +56,7 @@ function Feedback() {
           placeholder="Your message..."
         />
       </div>
-      <button className="btn btn-primary" value="submit" type="submit">
+      <button className="btn btn-primary feedback-btn" value="submit" type="submit">
         Send
       </button>
     </form>

@@ -160,6 +160,7 @@ function WrapperForSearch() {
               />
           </div>
           <div className="places-list-container">
+          <h3>Found places:</h3>
             <PlacesInfo data={categoryResponse} />
           </div>
           <Weather lat={coordinates.lat} lon={coordinates.lon} />

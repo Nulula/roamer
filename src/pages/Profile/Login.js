@@ -3,15 +3,11 @@ import "./LoginModal.css";
 import { useSessionStorage } from "./SessionStorage";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import bgImage from "./assets/backgroundImg.jpg";
 
 // This function creates a login modal component
 function LoginModal() {
   // Define styles for the login modal
   const styles = {
-    backgroundImage: `url(${bgImage})`,
-    backgroundSize: "cover",
-    height: "88vh",
     display: "flex",
     fontStyle: "italic",
   };
@@ -234,7 +230,7 @@ function LoginModal() {
       )}
       {!showModal && (
         <h5 style={styles}>
-          <div className="container mt-5">
+          <div className="register-container container mt-5 text-center">
             {userData.signedIn ? (
               window.location.replace("/profile") // Redirect to the profile page
             ) : (
@@ -246,9 +242,9 @@ function LoginModal() {
                   Once you're logged in, you'll be able to view your profile
                   page and update your information at any time. Thank you for
                   choosing our website!
-                </span>
+                </span><br />
                 <button
-                  className="btn btn-success rounded-start"
+                  className="btn btn-primary"
                   onClick={handleRegister}
                 >
                   Sign In

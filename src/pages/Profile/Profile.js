@@ -2,24 +2,12 @@ import React, { useState, useEffect } from "react";
 import { useLocalStorage } from "./LocalStorage";
 import { useSessionStorage } from "./SessionStorage";
 import Login from "./Login";
-import bgImage from "./assets/backgroundImg.jpg";
 
 // Define the styles for the profile page
 const styles = {
-  backgroundImage: `url(${bgImage})`,
-  backgroundSize: "cover",
-  height: "88vh",
   fontStyle: "italic",
 };
 
-// Define the styles for the logout button
-const buttonStyle = {
-  height: "35px",
-  borderRadius: "5px",
-  background: "green",
-  border: "transparent",
-  color: "white",
-};
 
 // Define the Profile component
 function Profile() {
@@ -95,25 +83,23 @@ function Profile() {
     <>
       {sessionData.signedIn ? (
         // Show the profile page if the user is signed in
-        <div>
-          <div style={styles}>
-            <div className="container mt-5">
+        <div className="profile-container container mt-5" style={styles}>
+          <div className="profile-text text-center">
+            <p>
               Welcome to your profile page, {sessionData.name}! Here, you can
               find all the places you saved during your previous trips.
-            </div>
-
+            </p>
             <button
-              style={buttonStyle}
-              className="botton mt-5"
+              className="btn btn-primary"
               onClick={handleLogout}
             >
               Logout
             </button>
           </div>
-          <div>
+          <div className="saved-container container mt-5">
             <ul>
               {savedPlaces.map((place, index) => (
-                <li key={index}>
+                <li className="saved-place" key={index}>
                   <h3>{place.properties.address_line1}</h3>
                   <p>{place.properties.address_line2}</p>
                   <p>{place.properties.datasource.raw.phone}</p>

@@ -120,6 +120,7 @@ function Geolocation() {
             />
         </div>
         <div className="places-list-container">
+          <h3>Found places:</h3>
           <PlacesInfo data={categoryResponse} />
         </div>
         <Weather lat={latitude} lon={longitude} />
