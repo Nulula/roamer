@@ -6,11 +6,14 @@ import logo from "../assets/Roamer_Logo.png";
 // Styles for the Nav component
 const styles = {
   navBar: {
+    color: "white",
     position: "relative",
   },
   navList: {
     marginRight: "0",
-    marginLeft: "auto",
+  },
+  navLink: {
+    color: "white",
   },
 };
 
@@ -30,7 +33,7 @@ function Nav() {
   return (
     <nav className="navbar navbar-expand-lg navbar-light bg-secondary">
       <div style={styles.navBar} className="container-fluid">
-        <div>
+        <div className="d-flex align-items-center">
           <NavLink to="/">
             <img
               src={logo}
@@ -38,69 +41,71 @@ function Nav() {
               style={{ marginRight: "2px", width: "75px" }}
             />
           </NavLink>
+          <div className="ms-3">{currentTime}</div>
         </div>
-        <div
-          className="container"
-          style={{
-            color: "white",
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-          }}
+        <button
+          className="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNav"
+          aria-controls="navbarNav"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+          style={{ borderColor: "white" }}
         >
-          {currentTime}
+          <span className="navbar-toggler-icon"></span>
+        </button>
+        <div className="collapse navbar-collapse" id="navbarNav">
+          <ul className="navbar-nav ms-auto">
+            <li className="nav-item">
+              <NavLink
+                to="/"
+                end
+                className={({ isActive }) =>
+                  isActive ? "nav-link active" : "nav-link"
+                }
+                style={styles.navLink}
+              >
+                Home
+              </NavLink>
+            </li>
+            <li className="nav-item">
+              <NavLink
+                to="/nearme"
+                end
+                className={({ isActive }) =>
+                  isActive ? "nav-link active" : "nav-link"
+                }
+                style={styles.navLink}
+              >
+                Near me
+              </NavLink>
+            </li>
+            <li className="nav-item">
+              <NavLink
+                to="/contact"
+                end
+                className={({ isActive }) =>
+                  isActive ? "nav-link active" : "nav-link"
+                }
+                style={styles.navLink}
+              >
+                Contact us
+              </NavLink>
+            </li>
+            <li className="nav-item">
+              <NavLink
+                to="/profile"
+                className={({ isActive }) =>
+                  isActive ? "nav-link active" : "nav-link"
+                }
+                style={styles.navLink}
+              >
+                Profile
+              </NavLink>
+            </li>
+          </ul>
         </div>
-        <ul className="navbar-nav " style={styles.navList}>
-          {/* Login page link */}
-          <li className="nav-item" style={{ marginRight: "10px" }}>
-            <NavLink
-              to="/"
-              end
-              className={({ isActive }) =>
-                isActive ? "nav-link active" : "nav-link"
-              }
-            >
-              Home
-            </NavLink>
-          </li>
-
-          {/* Near me page link */}
-          <li className="nav-item" style={{ marginRight: "10px" }}>
-            <NavLink
-              to="/nearme"
-              end
-              className={({ isActive }) =>
-                isActive ? "nav-link active" : "nav-link"
-              }
-            >
-              Near me
-            </NavLink>
-          </li>
-          {/* Contact us page link */}
-          <li className="nav-item" style={{ marginRight: "10px" }}>
-            <NavLink
-              to="/contact"
-              end
-              className={({ isActive }) =>
-                isActive ? "nav-link active" : "nav-link"
-              }
-            >
-              Contact us
-            </NavLink>
-          </li>
-          {/* Profile page link */}
-          <li className="nav-item" style={{ marginRight: "10px" }}>
-            <NavLink
-              to="/profile"
-              className={({ isActive }) =>
-                isActive ? "nav-link active" : "nav-link"
-              }
-            >
-              Profile
-            </NavLink>
-          </li>
-          {/* Login page link */}
-        </ul>
       </div>
     </nav>
   );

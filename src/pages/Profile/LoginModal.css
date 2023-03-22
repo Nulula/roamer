@@ -30,6 +30,12 @@
   
   @media screen and (min-width: 768px) {
     .modal-content {
+      width: 50%;
+    }
+  }
+
+  @media screen and (min-width: 1024px) {
+    .modal-content {
       width: 25%;
     }
   }

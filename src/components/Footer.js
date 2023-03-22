@@ -19,8 +19,8 @@ const styles = {
 function Footer() {
   // Returning the footer with its text
   return (
-    <footer style={styles.footer} className="footer">
-      <span style={styles.text}>Copyright © Roamer 2023</span>
+    <footer className="footer text-center">
+      <span>Copyright © Roamer 2023</span>
     </footer>
   );
 }
