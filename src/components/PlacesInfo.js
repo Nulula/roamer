@@ -26,10 +26,17 @@ function PlacesInfo({ data }) {
       toast.error("Please log in first to save the place.");
       return;
     }
-    const id = event.target.getAttribute("data-id");
-    const place = places[id];
-    localStorage.setItem(`place-${id}`, JSON.stringify(place));
-    toast.success("Item has been saved to Profile");
+
+    const id = parseInt(event.target.getAttribute("data-id"));
+    console.log(id);
+    for (let i = 0; i < places.length; i++) {
+      if (places[i].properties.datasource.raw.osm_id === id) {
+        const place = places[i];
+        console.log(place);
+        localStorage.setItem(`place-${id}`, JSON.stringify(place));
+        toast.success("Item has been saved to Profile");
+      }
+    }
   };
 
   return (
@@ -52,7 +59,7 @@ function PlacesInfo({ data }) {
               </a>
               <button
                 className="btn btn-primary"
-                data-id={index}
+                data-id={place.properties.datasource.raw.osm_id}
                 onClick={handleSave}
               >
                 Save
